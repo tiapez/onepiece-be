@@ -13,7 +13,7 @@ import com.op.be.usercard.repository.CardRepository;
 import com.op.be.usercard.service.CardService;
 
 @RestController
-@RequestMapping("API/Card")
+@RequestMapping("/Card")
 public class RestCardController {
 
 	@Autowired
