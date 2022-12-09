@@ -13,7 +13,7 @@ import com.op.be.usercard.repository.CardRepository;
 import com.op.be.usercard.service.CardService;
 
 @RestController
-@RequestMapping("/Card")
+@RequestMapping("/card")
 public class RestCardController {
 
 	@Autowired
@@ -41,7 +41,7 @@ public class RestCardController {
 		return cardlist;
 	}
 
-	@GetMapping(value = "/getAll")
+	@GetMapping(value = "/all")
 	public ArrayList<CardWDetailsDTO> getAll() throws Exception {
 		ArrayList<CardWDetailsDTO> cardlist = cs.getAll();
 		return cardlist;
