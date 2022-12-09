@@ -1,0 +1,38 @@
+
+<div class="button-row">
+	<div class="card-button text-center">
+		<button class="btn btn-dark" th:disabled="${card.qty > 0}"
+			th:onclick="@{${'trystuff(' + card.Id + ')'}}">Add</button>
+	</div>
+	<div class="card-button text-center">
+		<form
+			th:action="${'https://www.ebay.it/sch/onepiece tcg ' + card.Name + card.Number.substring(0,3)}"
+			target="_blank">
+			<button class="btn btn-dark" type="submit">Buy</button>
+		</form>
+	</div>
+	<div class="card-button text-center">
+		<button class="btn btn-dark">View</button>
+	</div>
+</div>
+<th:block layout:fragment="scripts">
+	<script th:inline="javascript">
+		function trystuff(id) {
+			var cardId = 'cardId=' + id;
+			console.log(cardId);
+			var xhr = new XMLHttpRequest();
+			xhr.open("POST", "add1", true);
+			xhr.setRequestHeader("Content-type",
+					"application/x-www-form-urlencoded");
+			xhr.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					var r = xhr.response;
+					var c = document.getElementById("img-card-" + id);
+					c.classList.remove('grey-img');
+				}
+			}
+			xhr.send("cardId=" + id);
+
+		}
+	</script>
+</th:block>

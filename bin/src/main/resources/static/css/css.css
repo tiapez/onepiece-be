@@ -1,0 +1,168 @@
+@charset "ISO-8859-1";
+
+/*NAVBAR */
+.navbar-global{
+	border-bottom: 1px solid black;
+}
+.nav-down{
+	background: linear-gradient(#105edd,#0b3075);
+}
+
+/*HEADER & FILTRI */
+.header-row{
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  background: linear-gradient(#105edd,#0b3075);
+  z-index:9999;
+  border-bottom: 1px solid black;
+}
+.form-filter{
+	display: flex;
+	flex-direction: row;
+}
+
+.button-filter{
+	margin-right: 2%;
+}
+
+.filter-activation-button{
+	margin-bottom: 2%;
+	width: 100%;
+}
+
+
+
+/*CARD LIST */
+.card-list-scroll{
+	height:100%;
+	overflow: hidden;
+	background: rgba(11,48,117,1);
+}
+
+.card-list-none{
+	display: none !important;
+}
+.card-list-container-img{
+	border-top: 1px solid black;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+.card-list-container-text{
+	border-top: 1px solid black;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+}
+
+.card-box {
+	margin: 1%;
+	width: 31%;
+	box-sizing: border-box;
+	-webkit-box-shadow: 5px 5px 10px 0px #000000; -moz-box-shadow : 5px 5px
+	10px 0px #000000; -o-box-shadow : 5px 5px 10px 0px #000000; box-shadow
+	: 5px 5px 10px 0px #000000;
+	-moz-box-shadow: 5px 5px 10px 0px #000000;
+	-o-box-shadow: 5px 5px 10px 0px #000000;
+	box-shadow: 5px 5px 10px 0px #000000;
+	border-radius:10px;
+	z-index: 0;
+}
+
+.card-container{
+	position:relative;
+	-webkit-box-shadow: 5px 5px 10px 0px #000000; -moz-box-shadow : 5px 5px
+	10px 0px #000000; -o-box-shadow : 5px 5px 10px 0px #000000; box-shadow
+	: 5px 5px 10px 0px #000000;
+	-moz-box-shadow: 5px 5px 10px 0px #000000;
+	-o-box-shadow: 5px 5px 10px 0px #000000;
+	box-shadow: 5px 5px 10px 0px #000000;
+	border-radius:10px;
+	z-index: 1;
+	padding: 2%;
+}
+
+.card-container img {
+	width: 90%;
+}
+
+.grey-img {
+	-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+	filter: grayscale(100%);
+}
+
+.table{
+	color: white !important;
+}
+.table td {
+  text-align: center;
+}
+.table th {
+  text-align: center;
+}
+
+/* CARD BUTTON */
+.button-row {
+	display: flex;
+	flex-wrap: wrap
+}
+
+.card-button{
+	width: 33%;
+}
+
+
+/* CARD BACKGROUND */
+.card-Red{
+	background: linear-gradient(135deg,rgba(224, 102, 102, 0.7),rgba(252, 0, 0,0.7) 50%);
+}
+
+.card-Red-Green{
+	background: linear-gradient(135deg,rgba(3, 255, 83,0.7), rgba(249, 26, 26, 0.7) 50%);
+}
+
+.card-Slash{
+	background: linear-gradient(225deg, rgb(53, 0, 246,1),rgb(0, 0, 0,0) 30%);
+}
+.card-Striker{
+	background: linear-gradient(225deg, rgb(246, 226, 0),rgb(0, 0, 0,0) 30%);
+}
+.card-Ranged{
+	background: linear-gradient(225deg, rgb(201, 42, 42),rgb(0, 0, 0,0) 30%);
+}
+.card-Special{
+	background: linear-gradient(225deg, rgb(180, 22, 247),rgb(0, 0, 0,0) 30%);
+}
+
+
+
+/* CSS TELEFONO */
+@media (max-width: 1000px){
+
+/* HEADER & FILTRI */
+.button-filter{
+	margin: 1%;
+}
+.form-filter{
+	display: flex;
+	flex-direction: column;
+}
+.button-filter{
+	margin-bottom: 2%;
+}
+
+/* CARD CONTAINER */
+.card-box {
+	-webkit-box-shadow: 5px 5px 10px 0px #000000; -moz-box-shadow : 5px 5px
+	10px 0px #000000; -o-box-shadow : 5px 5px 10px 0px #000000; box-shadow
+	: 5px 5px 10px 0px #000000;
+	margin: 1%;
+	-moz-box-shadow: 5px 5px 10px 0px #000000;
+	-o-box-shadow: 5px 5px 10px 0px #000000;
+	box-shadow: 5px 5px 10px 0px #000000;
+	border-radius:10px;
+	width: 48%;
+	box-sizing: border-box;
+}
+}

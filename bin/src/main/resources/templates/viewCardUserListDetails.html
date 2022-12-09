@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layoutNavbar}">
+<head>
+<title>Home</title>
+<link rel="stylesheet" type="text/css" th:href="@{css/css.css}">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+
+</head>
+<body>
+<div class="header-row">
+	<th:block th:insert="navbar">
+	</th:block>
+<div class="container text-center">
+		<h1 th:text="${session.filter.SetName}"></h1>
+
+		<div class="navbar navbar-expand-lg">
+			<button class="navbar-toggler filter-activation-button" type="button"
+				data-bs-toggle="collapse" data-bs-target="#cardSupportedContent"
+				aria-controls="cardSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="cardSupportedContent">
+				<form action="/addFilter" class="form-filter" method="POST"
+					id="formFilter">
+					<div class="col-auto button-filter">
+						<select class="form-select" name="set" id="set" form="formFilter">
+							<option th:each="set : ${setList}"
+								th:value="${set.Id + '/' + set.Name}" th:text="${set.Name}"
+								th:selected="${session.filter.SetId == set.Id}"></option>
+						</select>
+					</div>
+					<div class="col-auto button-filter">
+						<select class="form-select" name="cost" id="cost"
+							form="formFilter">
+							<option value=0
+								th:text="${session.filter.Cost == 0 ? 'Cost' : 'none'}"></option>
+							<option th:each="i : ${#numbers.sequence(1, 12)}" th:value="${i}"
+								th:text="${i}" th:selected="${session.filter.Cost == i}">
+						</select>
+					</div>
+					<div class="col-auto button-filter">
+						<select class="form-select" name="type" id="type"
+							form="formFilter">
+							<option value="none"
+								th:text="${session.filter.Type == 'none' ? 'Type' : 'none'}"></option>
+							<option value="leader"
+								th:selected="${session.filter.Type == 'leader'}">leader</option>
+							<option value="character"
+								th:selected="${session.filter.Type == 'character'}">character</option>
+							<option value="event"
+								th:selected="${session.filter.Type == 'event'}">event</option>
+							<option value="stand"
+								th:selected="${session.filter.Type == 'stand'}">stand</option>
+						</select>
+					</div>
+					<div class="col-auto button-filter">
+						<button type="submit" class="btn btn-outline-warning">Filter</button>
+					</div>
+				</form>
+			</div>
+			</div>
+		</div>
+	</div>
+	<div class="card-list-scroll">
+	<div class="card-list-container-img card-list-none" id="card-list-img">
+		<th:block th:each="card : ${cardList}">
+		<div th:class="${'card-box text-center card-' + card.Color}">
+			<div th:class="${'card-container text-center card-' + card.Role}">
+				<img th:id="${'img-card-'+card.Id}"
+					th:class="${card.qty == 0 ? 'grey-img' : ''}"
+					th:src="@{${'/img/' + card.SetId +'/'+ card.Number + '.png'}}"
+					width="360"></img>
+				<p th:text="${card.Name + ' - ' + card.Number}" />
+				<div class="button-row">
+					<div class="card-button text-center">
+						<button class="btn btn-dark" th:disabled="${card.qty > 0}"
+							th:onclick="@{${'trystuff(' + card.Id + ')'}}">Add</button>
+					</div>
+					<div class="card-button text-center">
+						<form
+							th:action="${'https://www.ebay.it/sch/onepiece tcg ' + card.Name + card.Number.substring(0,3)}"
+							target="_blank">
+							<button class="btn btn-dark" type="submit">Buy</button>
+						</form>
+					</div>
+					<div class="card-button text-center">
+						<button class="btn btn-dark">View</button>
+					</div>
+				</div>
+			</div>
+			</div>	
+		</th:block>
+	</div>
+	<div class="card-list-container-text" id="card-list-text">
+		<th:block th:each="card : ${cardList}">
+			<div th:class="${'card-container text-center card-' + card.Color}">
+				<p th:text="${card.Name + ' - ' + card.Number}" />
+				<div class="button-row">
+					<div class="card-button text-center">
+						<button class="btn btn-dark" th:disabled="${card.qty > 0}"
+							th:onclick="@{${'trystuff(' + card.Id + ')'}}">Add</button>
+					</div>
+					<div class="card-button text-center">
+						<form
+							th:action="${'https://www.ebay.it/sch/onepiece tcg ' + card.Name + card.Number.substring(0,3)}"
+							target="_blank">
+							<button class="btn btn-dark" type="submit">Buy</button>
+						</form>
+					</div>
+					<div class="card-button text-center">
+						<button class="btn btn-dark">View</button>
+					</div>
+				</div>
+			</div>
+		</th:block>
+	</div>
+</div>
+	<th:block layout:fragment="scripts">
+		<script th:inline="javascript">
+			function trystuff(id) {
+				var cardId = 'cardId=' + id;
+				console.log(cardId);
+				var xhr = new XMLHttpRequest();
+				xhr.open("POST", "add1", true);
+				xhr.setRequestHeader("Content-type",
+						"application/x-www-form-urlencoded");
+				xhr.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						var r = xhr.response;
+						var c = document.getElementById("img-card-" + id);
+						c.classList.remove('grey-img');
+					}
+				}
+				xhr.send("cardId=" + id);
+
+			}
+
+		</script>
+	</th:block>
+</body>
+<script th:src="@{js/listCard.js}"></script>
+</html>

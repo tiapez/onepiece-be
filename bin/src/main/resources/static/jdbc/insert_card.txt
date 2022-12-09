@@ -1,0 +1,24 @@
+INSERT INTO card (set_id,NUMBER,NAME,rarity,color,type,sub_type,effect,codice)
+VALUES(001,'1a','carta 1','rarity','color','type','sub-type','effect','001');
+INSERT INTO card (set_id,NUMBER,NAME,rarity,color,type,sub_type,effect,codice)
+VALUES(001,'2a','carta 2','rarity','color','type','sub-type','effect','002');
+INSERT INTO card (set_id,NUMBER,NAME,rarity,color,type,sub_type,effect,codice)
+VALUES(001,'3a','carta 3','rarity','color','type','sub-type','effect','003');
+INSERT INTO card (set_id,NUMBER,NAME,rarity,color,type,sub_type,effect,codice)
+VALUES(001,'4','carta 4','rarity','color','type','sub-type','effect','004');
+INSERT INTO card (set_id,NUMBER,NAME,rarity,color,type,sub_type,effect,codice)
+VALUES(001,'5','carta 5','rarity','color','type','sub-type','effect','005');
+INSERT INTO card (set_id,NUMBER,NAME,rarity,color,type,sub_type,effect,codice)
+VALUES(001,'6','carta 6','rarity','color','type','sub-type','effect','006');
+INSERT INTO card (set_id,NUMBER,NAME,rarity,color,type,sub_type,effect,codice)
+VALUES(001,'7','carta 7','rarity','color','type','sub-type','effect','007');
+INSERT INTO card (set_id,NUMBER,NAME,rarity,color,type,sub_type,effect,codice)
+VALUES(001,'8a','carta 8','rarity','color','type','sub-type','effect','008');
+INSERT INTO card (set_id,NUMBER,NAME,rarity,color,type,sub_type,effect,codice)
+VALUES(001,'1b','carta 1 alter','rarity','color','type','sub-type','effect','001');
+INSERT INTO card (set_id,NUMBER,NAME,rarity,color,type,sub_type,effect,codice)
+VALUES(001,'2b','carta 2 alter','rarity','color','type','sub-type','effect','002');
+INSERT INTO card (set_id,NUMBER,NAME,rarity,color,type,sub_type,effect,codice)
+VALUES(001,'3b','carta 3 alter','rarity','color','type','sub-type','effect','003');
+INSERT INTO card (set_id,NUMBER,NAME,rarity,color,type,sub_type,effect,codice)
+VALUES(001,'8b','carta 8 alter','rarity','color','type','sub-type','effect','008');

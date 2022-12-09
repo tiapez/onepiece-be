@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layoutNavbar}">
+<head>
+<title>Home</title>
+<link rel="stylesheet" type="text/css" th:href="@{css/css.css}">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+
+</head>
+<body>
+	<th:block th:insert="Component/header">
+	</th:block>
+	<div class="card-list-scroll">
+		<th:block th:insert="Component/cardListImg">
+		</th:block>
+		<th:block th:insert="Component/cardListText">
+		</th:block>
+	</div>
+</body>
+<script th:src="@{js/listCard.js}"></script>
+</html>
