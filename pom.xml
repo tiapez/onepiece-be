@@ -9,7 +9,7 @@
 	</parent>
 
 	<groupId>com.op.be.usercard</groupId>
-	<artifactId>Onepiece-tcg-be-user-card</artifactId>
+	<artifactId>Onepiece-Api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>onepiece backend usercard</name>
 	<description>Onepiece card db owner</description>
