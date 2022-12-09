@@ -1,27 +1,20 @@
 package com.op.be.usercard.model;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class CardDetails implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class CardDetails{
 
 	@Id
 	int id;
 	@Column
 	int cod_condition;
-	@Column
-	String condition;
-	@Column
+	@Column(name = "`language`")
 	String language;
+	@Column(name = "`condition`")
+	String condition;
 	@Column
 	String condDesc;
 

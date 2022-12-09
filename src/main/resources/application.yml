@@ -1,13 +1,13 @@
 spring:
   datasource:
-    url: jdbc:sqlserver://onepiece-tcg-db.database.windows.net:1433;database=onepiece;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://onepiece-mysql.mysql.database.azure.com:3306/onepiece
     username: aleyah96
     password: CiccioJuve69!
   jpa:
+    hibernate.ddl-auto: update
+    generate-ddl: true
     show-sql: true
-    hibernate:
-      ddl-auto: update
-      dialect : org.hibernate.dialect.SQLServer2012Dialect
 
 server:
   port: 9191

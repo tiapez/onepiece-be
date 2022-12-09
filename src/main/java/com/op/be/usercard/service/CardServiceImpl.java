@@ -45,7 +45,8 @@ public class CardServiceImpl implements CardService {
 		ArrayList<UserCardDTO> userCardDTOList = (ArrayList<UserCardDTO>) cucr.findUserCardClassicBySet(set,
 				rs.decodenick(nickCr));
 
-		;
+		System.out.println(userCardDTOList);
+		System.out.println(set);
 		ArrayList<CardWDetailsDTO> cardList = forgeCardWDetails(userCardDTOList);
 		return cardList;
 	}
