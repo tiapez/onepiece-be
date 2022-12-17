@@ -9,6 +9,7 @@ import com.op.be.usercard.model.Card;
 import com.op.be.usercard.model.CardDetails;
 import com.op.be.usercard.model.UserCard;
 import com.op.be.usercard.model.dto.CardWDetailsDTO;
+import com.op.be.usercard.model.dto.DeckDTO;
 import com.op.be.usercard.model.dto.DetailsDTO;
 import com.op.be.usercard.model.dto.UserCardDTO;
 import com.op.be.usercard.repository.CardRepository;
@@ -41,12 +42,9 @@ public class CardServiceImpl implements CardService {
 
 	@Override
 	public ArrayList<CardWDetailsDTO> getCardClassic(String nickCr, int set) throws Exception {
-		System.out.println(set);
 		ArrayList<UserCardDTO> userCardDTOList = (ArrayList<UserCardDTO>) cucr.findUserCardClassicBySet(set,
 				rs.decodenick(nickCr));
 
-		System.out.println(userCardDTOList);
-		System.out.println(set);
 		ArrayList<CardWDetailsDTO> cardList = forgeCardWDetails(userCardDTOList);
 		return cardList;
 	}
@@ -60,6 +58,12 @@ public class CardServiceImpl implements CardService {
 		}
 		return cardList;
 	}
+	
+	
+	public DeckDTO getDeckDTO() {
+		return null;
+	}
+	
 
 	private ArrayList<CardWDetailsDTO> forgeCardWDetails(ArrayList<UserCardDTO> userCardDTOList) throws Exception {
 		ArrayList<CardWDetailsDTO> cardList = new ArrayList<CardWDetailsDTO>();

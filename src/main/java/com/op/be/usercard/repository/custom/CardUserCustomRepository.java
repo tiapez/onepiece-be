@@ -34,4 +34,6 @@ public interface CardUserCustomRepository extends JpaRepository<Card, Long> {
 			+ "ORDER BY  c.number ")
 	List<UserCardDTO> findUserCardClassicBySet(@Param("set") int set, @Param("user") String user);
 
+
+	
 }
