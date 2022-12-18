@@ -9,23 +9,21 @@ public class Set {
 
 	@Id
 	@Column
-	int id;
+	String id;
 	@Column
 	String name;
 	@Column
 	int list;
-	@Column
-	String cardCod;
 
 	public Set() {
 		super();
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

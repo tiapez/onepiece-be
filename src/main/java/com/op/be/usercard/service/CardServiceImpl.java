@@ -31,6 +31,7 @@ public class CardServiceImpl implements CardService {
 	@Autowired
 	RestService rs;
 
+	
 	@Override
 	public ArrayList<CardWDetailsDTO> getCardDetails(String nickCr, int set) throws Exception {
 		

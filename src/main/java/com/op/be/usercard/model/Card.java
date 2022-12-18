@@ -17,7 +17,7 @@ public class Card {
 	@Column
 	String rarity;
 	@Column
-	int setId;
+	String setId;
 	@Column
 	String name;
 	@Column
@@ -61,11 +61,11 @@ public class Card {
 		this.rarity = rarity;
 	}
 
-	public int getSetId() {
+	public String getSetId() {
 		return setId;
 	}
 
-	public void setSetId(int setId) {
+	public void setSetId(String setId) {
 		this.setId = setId;
 	}
 
@@ -141,7 +141,7 @@ public class Card {
 		this.role = role;
 	}
 
-	public Card(int id, String number, String rarity, int setId, String name, String color, String cardType,
+	public Card(int id, String number, String rarity, String setId, String name, String color, String cardType,
 			String type, String effect, int cost, int power, int counter, String role) {
 		super();
 		this.id = id;

@@ -137,8 +137,8 @@ public class GetCardListDetails {
 			String number1 =rows[i].split(",")[0].replace(" ","");
 			String number2 =rows[i-1].split(",")[0].replace(" ","");
 			if(number1.equals(number2)) {
-				String s1 = number1.concat("b,");
-				String s2 = number2.concat("a,");
+				String s1 = number1.concat("a,");
+				String s2 = number2;
 				for(int j = 1; j<rows[i].split(",").length; j++) {
 					 s1 = s1.concat(rows[i].split(",")[j]+",");
 					 s2 = s2.concat(rows[i-1].split(",")[j]+",");
