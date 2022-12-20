@@ -7,21 +7,33 @@ import org.springframework.stereotype.Service;
 
 import com.op.be.usercard.model.Card;
 import com.op.be.usercard.model.CardDetails;
+import com.op.be.usercard.model.DeckCard;
+import com.op.be.usercard.model.DeckCardId;
 import com.op.be.usercard.model.UserCard;
 import com.op.be.usercard.model.dto.CardWDetailsDTO;
+import com.op.be.usercard.model.dto.DeckCardDTO;
 import com.op.be.usercard.model.dto.DeckDTO;
 import com.op.be.usercard.model.dto.DetailsDTO;
 import com.op.be.usercard.model.dto.UserCardDTO;
 import com.op.be.usercard.repository.CardRepository;
+import com.op.be.usercard.repository.DeckCardRepository;
 import com.op.be.usercard.repository.UserRepository;
 import com.op.be.usercard.repository.custom.CardUserCustomRepository;
+import com.op.be.usercard.repository.custom.DeckRepository;
+import com.op.be.usercard.utils.UserDeck;
 
 @Service
 public class CardServiceImpl implements CardService {
 
 	@Autowired
 	CardUserCustomRepository cucr;
+	
+	@Autowired
+	DeckRepository dr;
 
+	@Autowired
+	DeckCardRepository dcr;
+	
 	@Autowired
 	CardRepository cr;
 
@@ -33,16 +45,36 @@ public class CardServiceImpl implements CardService {
 
 	
 	@Override
-	public ArrayList<CardWDetailsDTO> getCardDetails(String nickCr, int set) throws Exception {
+	public void saveDeck(UserDeck userDeck) {
+		dcr.deleteByDeckId(userDeck.getDeck().getId());
+		for (DeckCardDTO deckCard : userDeck.getCardList()) {
+			dcr.save(new DeckCard(userDeck.getDeck().getId(), deckCard.getCard().getId(),deckCard.getQtyRequired()));
+		}
+		dr.save(userDeck.getDeck());
+	}
+	
+	
+	
+	@Override
+	public ArrayList<CardWDetailsDTO> getCardDetails(String nickCr, String set) throws Exception {
 		
 		ArrayList<UserCardDTO> userCardDTOList = (ArrayList<UserCardDTO>) cucr.findUserCardDetailsBySet(set,
 				rs.decodenick(nickCr));
 		ArrayList<CardWDetailsDTO> cardList = forgeCardWDetails(userCardDTOList);
 		return cardList;
 	}
+	
+	@Override
+	public ArrayList<CardWDetailsDTO> getCardDetailsDeck(String lang, String color, int codCond, String nickCr) throws Exception {
+		
+		ArrayList<UserCardDTO> userCardDTOList = (ArrayList<UserCardDTO>) dr.findUserCardDetailsByDeck(lang,color,codCond,
+				"gambero");//rs.decodenick(nickCr));
+		ArrayList<CardWDetailsDTO> cardList = forgeCardWDetails(userCardDTOList);
+		return cardList;
+	}
 
 	@Override
-	public ArrayList<CardWDetailsDTO> getCardClassic(String nickCr, int set) throws Exception {
+	public ArrayList<CardWDetailsDTO> getCardClassic(String nickCr, String set) throws Exception {
 		ArrayList<UserCardDTO> userCardDTOList = (ArrayList<UserCardDTO>) cucr.findUserCardClassicBySet(set,
 				rs.decodenick(nickCr));
 

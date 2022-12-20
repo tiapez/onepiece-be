@@ -1,12 +1,12 @@
-package com.op.be.usercard.utils;
+package com.op.be.usercard.model.dto;
 
 import com.op.be.usercard.model.Card;
 
-public class DeckCard {
+public class DeckCardDTO {
 	
 	Card card;
-	Long qtyOwned;
-	Long qtyRequired;
+	int qtyOwned;
+	int qtyRequired;
 	
 	
 	public Card getCard() {
@@ -16,32 +16,37 @@ public class DeckCard {
 		this.card = card;
 	}
 	
-	public Long getQtyOwned() {
+	public int getQtyOwned() {
 		return qtyOwned;
 	}
-	public void setQtyOwned(Long qtyOwned) {
+	public void setQtyOwned(int qtyOwned) {
 		this.qtyOwned = qtyOwned;
 	}
 	
-	public Long getQtyRequired() {
+	public int getQtyRequired() {
 		return qtyRequired;
 	}
-	public void setQtyRequired(Long qtyRequired) {
+	public void setQtyRequired(int qtyRequired) {
 		this.qtyRequired = qtyRequired;
 	}
 	
-	public DeckCard(Card card, Long qty) {
+	public DeckCardDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public DeckCardDTO(Card card, int qty) {
 		super();
 		this.card = card;
 		this.qtyOwned = qty;
 	}
 	
-	public DeckCard(Card card, Long qtyOwned, Long qtyRequired) {
+	public DeckCardDTO(Card card, int qtyOwned, int qtyRequired) {
 		super();
 		this.card = card;
 		this.qtyOwned = qtyOwned;
 		this.qtyRequired = qtyRequired;
 	}
+	
 	@Override
 	public String toString() {
 		return "DeckCard [card=" + card + ", qtyOwned=" + qtyOwned + ", qtyRequired=" + qtyRequired + "]";

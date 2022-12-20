@@ -21,7 +21,7 @@ public interface CardUserCustomRepository extends JpaRepository<Card, Long> {
 			+ "OR ( uc.detailsId = cd.id and uc.userId = u.id and uc.cardId = c.id) "
 			+ "WHERE c.setId = :set  "
 			+ "ORDER BY  c.number, cd.id ")
-	List<UserCardDTO> findUserCardDetailsBySet(@Param("set") int set, @Param("user") String user);
+	List<UserCardDTO> findUserCardDetailsBySet(@Param("set") String set, @Param("user") String user);
 
 	@Query("SELECT new com.op.be.usercard.model.dto.UserCardDTO(c,uc,cd) "
 			+ "FROM Card c LEFT JOIN CardDetails cd ON 1=1 "
@@ -32,7 +32,7 @@ public interface CardUserCustomRepository extends JpaRepository<Card, Long> {
 			+ "WHERE c.setId = :set  "
 			+ "AND cd.language = u.language AND cd.cod_condition = u.condition " 
 			+ "ORDER BY  c.number ")
-	List<UserCardDTO> findUserCardClassicBySet(@Param("set") int set, @Param("user") String user);
+	List<UserCardDTO> findUserCardClassicBySet(@Param("set") String set, @Param("user") String user);
 
 
 	

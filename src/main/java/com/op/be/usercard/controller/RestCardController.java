@@ -23,9 +23,8 @@ public class RestCardController {
 	CardService cs;
 
 	@GetMapping(value = "/getAllDetails")
-	public ArrayList<CardWDetailsDTO> getAllDetails(@RequestParam("nick") String nick, @RequestParam("set") int set)
+	public ArrayList<CardWDetailsDTO> getAllDetails(@RequestParam("nick") String nick, @RequestParam("set") String set)
 			throws Exception {
-		System.out.println(nick);
 		if(nick.equals(""))
 			return null;
 		ArrayList<CardWDetailsDTO> cardlist = cs.getCardDetails(nick, set);
@@ -34,7 +33,7 @@ public class RestCardController {
 	}
 
 	@GetMapping(value = "/getAllClassic")
-	public ArrayList<CardWDetailsDTO> getAllClassic(@RequestParam("nick") String nick, @RequestParam("set") int set)
+	public ArrayList<CardWDetailsDTO> getAllClassic(@RequestParam("nick") String nick, @RequestParam("set") String set)
 			throws Exception {
 		ArrayList<CardWDetailsDTO> cardlist = cs.getCardClassic(nick, set);
 

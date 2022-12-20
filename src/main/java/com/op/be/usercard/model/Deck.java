@@ -22,7 +22,7 @@ public class Deck {
 	String cardList;
 	@Column
 	String deck;
-	@Column
+	@Column(name = "`desc`")
 	String desc;
 	@Column
 	String counter;
@@ -32,8 +32,24 @@ public class Deck {
 	String note;
 	@Column
 	String format;
+	@Column
+	String name;
+	@Column
+	int cond;
 	
 	
+	public String getFormat() {
+		return format;
+	}
+	public void setFormat(String format) {
+		this.format = format;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public int getId() {
 		return id;
 	}
@@ -94,12 +110,20 @@ public class Deck {
 	public void setNote(String note) {
 		this.note = note;
 	}
+	public int getCond() {
+		return cond;
+	}
+	public void setCond(int cond) {
+		this.cond = cond;
+	}
+	
 	public Deck() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	public Deck(int id, int userId, int leader, String color, String cardList, String deck, String desc, String counter,
-			String side, String note) {
+			String side, String note, String format, String name, int cond) {
 		super();
 		this.id = id;
 		this.userId = userId;
@@ -111,13 +135,34 @@ public class Deck {
 		this.counter = counter;
 		this.side = side;
 		this.note = note;
+		this.format = format;
+		this.name = name;
+		this.cond = cond;
+	}
+	public Deck(int id, int userId, int leader, String color, String cardList, String deck, String desc, String counter,
+			String side, String note, String format, String name) {
+		super();
+		this.id = id;
+		this.userId = userId;
+		this.leader = leader;
+		this.color = color;
+		this.cardList = cardList;
+		this.deck = deck;
+		this.desc = desc;
+		this.counter = counter;
+		this.side = side;
+		this.note = note;
+		this.format = format;
+		this.name = name;
 	}
 	@Override
 	public String toString() {
 		return "Deck [id=" + id + ", userId=" + userId + ", leader=" + leader + ", color=" + color + ", cardList="
 				+ cardList + ", deck=" + deck + ", desc=" + desc + ", counter=" + counter + ", side=" + side + ", note="
-				+ note + "]";
+				+ note + ", format=" + format + ", name=" + name + "]";
 	}
+
+
 	
 	
 	

@@ -2,12 +2,11 @@ package com.op.be.usercard.model.dto;
 
 import com.op.be.usercard.model.Card;
 import com.op.be.usercard.model.Deck;
-import com.op.be.usercard.utils.DeckCard;
 
 public class DeckDTO {
 
 	Deck deck;
-	DeckCard card;
+	DeckCardDTO card;
 
 	
 	public Deck getDeck() {
@@ -17,22 +16,28 @@ public class DeckDTO {
 		this.deck = deck;
 	}
 	
-	public DeckCard getCard() {
+	public DeckCardDTO getCard() {
 		return card;
 	}
-	public void setCard(DeckCard card) {
+	public void setCard(DeckCardDTO card) {
 		this.card = card;
 	}
 	public DeckDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
-	public DeckDTO(Card card, Deck deck, Long qty) {
+	public DeckDTO(Card card, Deck deck, Long qtyOwned, int qtyRequired) {
 		super();
 		this.deck = deck;
-		this.card = new DeckCard(card,qty);
+		this.card = new DeckCardDTO(card,qtyOwned.intValue(),qtyRequired);
 	}
+	
+	public DeckDTO(Card card, Deck deck, Long qtyOwned) {
+		super();
+		this.deck = deck;
+		this.card = new DeckCardDTO(card,qtyOwned.intValue());
+	}
+	
 	@Override
 	public String toString() {
 		return "DeckDTO [deck=" + deck + ", card=" + card + "]";
