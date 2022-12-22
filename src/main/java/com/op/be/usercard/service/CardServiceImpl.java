@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.op.be.usercard.model.Card;
 import com.op.be.usercard.model.CardDetails;
 import com.op.be.usercard.model.DeckCard;
-import com.op.be.usercard.model.DeckCardId;
 import com.op.be.usercard.model.UserCard;
 import com.op.be.usercard.model.dto.CardWDetailsDTO;
 import com.op.be.usercard.model.dto.DeckCardDTO;

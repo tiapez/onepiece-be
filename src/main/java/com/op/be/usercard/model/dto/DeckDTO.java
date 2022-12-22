@@ -29,6 +29,7 @@ public class DeckDTO {
 	public DeckDTO(Card card, Deck deck, Long qtyOwned, int qtyRequired) {
 		super();
 		this.deck = deck;
+		if(card != null)
 		this.card = new DeckCardDTO(card,qtyOwned.intValue(),qtyRequired);
 	}
 	

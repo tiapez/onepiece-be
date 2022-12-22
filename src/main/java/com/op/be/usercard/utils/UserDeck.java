@@ -9,6 +9,7 @@ import com.op.be.usercard.model.dto.DeckCardDTO;
 public class UserDeck {
 	Deck deck;
 	ArrayList<DeckCardDTO> cardList;
+	DeckCardDTO leader;
 	
 	public Deck getDeck() {
 		return deck;
@@ -24,9 +25,21 @@ public class UserDeck {
 		this.cardList = cardList;
 	}
 	
+	public DeckCardDTO getLeader() {
+		return leader;
+	}
+	public void setLeader(DeckCardDTO leader) {
+		this.leader = leader;
+	}
 	public UserDeck() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	
+	public UserDeck(Deck deck) {
+		super();
+		this.deck = deck;
+		this.cardList = new ArrayList<DeckCardDTO>();
 	}
 	
 	public UserDeck(Deck deck, ArrayList<DeckCardDTO> cardList) {
@@ -41,7 +54,12 @@ public class UserDeck {
 		this.cardList = new ArrayList<DeckCardDTO>(Arrays.asList(cardList));
 	}
 	
-	
+	public UserDeck(Deck deck, ArrayList<DeckCardDTO> cardList, DeckCardDTO leader) {
+		super();
+		this.deck = deck;
+		this.cardList = cardList;
+		this.leader = leader;
+	}
 	public UserDeck(Deck deck, DeckCardDTO card) {
 		super();
 		this.deck = deck;

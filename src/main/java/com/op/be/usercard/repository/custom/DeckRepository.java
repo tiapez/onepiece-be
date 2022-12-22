@@ -14,11 +14,11 @@ import com.op.be.usercard.model.dto.UserCardDTO;
 @Repository("deckRepository")
 public interface DeckRepository extends JpaRepository<Deck, Long> {
 
-	@Query("SELECT new com.op.be.usercard.model.dto.DeckDTO(c,d,COALESCE(sum(uc.qty),0),dc.qty) "
+	@Query("SELECT new com.op.be.usercard.model.dto.DeckDTO(c,d,COALESCE(sum(uc.qty),0),COALESCE(dc.qty,1)) "
 			+ "FROM Deck d INNER JOIN com.op.be.usercard.model.User u "
 			+ "ON u.nick = :nick  AND u.id = d.userId "
-			+ "INNER JOIN DeckCard dc ON dc.deckId = d.id "
-			+ "INNER JOIN Card c ON c.id = dc.cardId "
+			+ "LEFT JOIN DeckCard dc ON dc.deckId = d.id "
+			+ "INNER JOIN Card c ON c.id = dc.cardId OR c.id = d.leader "
 			+ "LEFT JOIN UserCard uc ON uc.cardId = c.id AND uc.userId = u.id "
 			+ "LEFT JOIN CardDetails cd ON cd.id = uc.detailsId "
 			+ "WHERE cd.cod_condition <= d.cond OR cd.cod_condition is null "
