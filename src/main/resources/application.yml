@@ -1,7 +1,7 @@
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://onepiece-mysql.mysql.database.azure.com:3306/onepiece
+    url: jdbc:mysql://onepiece-mysql.mysql.database.azure.com:3306/onepiece?sessionVariables=sql_mode=''
     username: aleyah96
     password: CiccioJuve69!
   jpa:
