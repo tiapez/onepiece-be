@@ -1,8 +1,6 @@
 package com.op.be.usercard.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.op.be.usercard.model.Deck;
 import com.op.be.usercard.model.dto.CardWDetailsDTO;
 import com.op.be.usercard.model.dto.DeckDTO;
 import com.op.be.usercard.repository.DeckCardRepository;
@@ -73,5 +72,13 @@ public class RestDeckController {
 	public void saveDeck(@RequestBody UserDeck userDeck) {
 		cs.saveDeck(userDeck);
 	}
+	
+	@PostMapping("/test4")
+	public void saveDeck(@RequestBody Deck deck) {
+		dr.save(deck);
+	}
+	
+	
+	
 
 }
