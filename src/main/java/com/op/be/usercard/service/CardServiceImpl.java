@@ -64,10 +64,11 @@ public class CardServiceImpl implements CardService {
 	}
 	
 	@Override
-	public ArrayList<CardWDetailsDTO> getCardDetailsDeck(String lang, String color, int codCond, String nickCr) throws Exception {
+	public ArrayList<CardWDetailsDTO> getCardDetailsDeck(String lang, String color1, String color2, int codCond, String nickCr) throws Exception {
 		
-		ArrayList<UserCardDTO> userCardDTOList = (ArrayList<UserCardDTO>) dr.findUserCardDetailsByDeck(lang,color,codCond,
-				"gambero");//rs.decodenick(nickCr));
+		String nick = rs.decodenick(nickCr);
+		ArrayList<UserCardDTO> userCardDTOList = (ArrayList<UserCardDTO>) dr.findUserCardDetailsByDeck(lang,color1,color2,codCond,
+				nick);//rs.decodenick(nickCr));
 		ArrayList<CardWDetailsDTO> cardList = forgeCardWDetails(userCardDTOList);
 		return cardList;
 	}

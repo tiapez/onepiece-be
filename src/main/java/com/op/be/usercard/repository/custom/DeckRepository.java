@@ -27,17 +27,17 @@ public interface DeckRepository extends JpaRepository<Deck, Long> {
 	List<DeckDTO> findDeckUser(@Param("nick") String nick);
 	
 	
-	@Query("SELECT new com.op.be.usercard.model.dto.DeckDTO(c,d,COALESCE(sum(uc.qty),0)) "
-			+ "FROM Card c LEFT JOIN CardDetails cd ON 1=1 "
-			+ "INNER JOIN com.op.be.usercard.model.User u ON u.nick = 'gambero' "
-			+ "INNER JOIN Deck d ON u.id =  d.userId AND "
-			+ "d.cardList like CONCAT('%',c.setId,'-',c.number,'x%') "
-			+ "LEFT JOIN UserCard uc  ON "
-			+ "(uc.detailsId is null and uc.userId is null and uc.cardId is null) "
-			+ "OR ( uc.detailsId = cd.id and uc.userId = u.id and uc.cardId = c.id) "
-			+ "GROUP BY c.id,d.id "
-			+ "ORDER BY  d.id,c.number ")
-	List<DeckDTO> findDeckUser2();
+//	@Query("SELECT new com.op.be.usercard.model.dto.DeckDTO(c,d,COALESCE(sum(uc.qty),0)) "
+//			+ "FROM Card c LEFT JOIN CardDetails cd ON 1=1 "
+//			+ "INNER JOIN com.op.be.usercard.model.User u ON u.nick = 'gambero' "
+//			+ "INNER JOIN Deck d ON u.id =  d.userId AND "
+//			+ "d.cardList like CONCAT('%',c.setId,'-',c.number,'x%') "
+//			+ "LEFT JOIN UserCard uc  ON "
+//			+ "(uc.detailsId is null and uc.userId is null and uc.cardId is null) "
+//			+ "OR ( uc.detailsId = cd.id and uc.userId = u.id and uc.cardId = c.id) "
+//			+ "GROUP BY c.id,d.id "
+//			+ "ORDER BY  d.id,c.number ")
+//	List<DeckDTO> findDeckUser2();
 
 	@Query("SELECT new com.op.be.usercard.model.dto.UserCardDTO(c,uc,cd) "
 			+ "FROM Card c LEFT JOIN CardDetails cd ON 1=1 "
@@ -45,10 +45,10 @@ public interface DeckRepository extends JpaRepository<Deck, Long> {
 			+ "LEFT JOIN UserCard uc  ON  "
 			+ "(uc.detailsId is null and uc.userId is null and uc.cardId is null) "
 			+ "OR ( uc.detailsId = cd.id and uc.userId = u.id and uc.cardId = c.id) "
-			+ "WHERE c.color = :color AND cd.language = :lang and cd.cod_condition <= :codCond AND c.cardType != 'Leader' "
+			+ "WHERE (c.color = :color1 OR c.color = :color2) AND cd.language = :lang and cd.cod_condition <= :codCond AND c.cardType != 'Leader' "
 			+ "ORDER BY  c.setId,c.number, cd.id ")
-	List<UserCardDTO> findUserCardDetailsByDeck(@Param("lang") String lang,@Param("color") String color,
-			@Param("codCond") int codCond, @Param("user") String user);
+	List<UserCardDTO> findUserCardDetailsByDeck(@Param("lang") String lang,@Param("color1") String color1,
+			@Param("color2") String color2,@Param("codCond") int codCond, @Param("user") String user);
 
 	
 	

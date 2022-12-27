@@ -15,10 +15,10 @@ public interface CardService {
 
 	int getDetailsId(String l, int c);
 
-	ArrayList<CardWDetailsDTO> getCardDetailsDeck(String lang, String color, int codCond, String nickCr)
-			throws Exception;
-
 	void saveDeck(UserDeck userDeck);
+
+	ArrayList<CardWDetailsDTO> getCardDetailsDeck(String lang, String color1, String color2, int codCond, String nickCr)
+			throws Exception;
 
 
 }

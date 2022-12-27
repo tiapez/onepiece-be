@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.op.be.usercard.model.Card;
 import com.op.be.usercard.model.dto.CardWDetailsDTO;
 import com.op.be.usercard.repository.CardRepository;
 import com.op.be.usercard.service.CardService;
@@ -43,6 +44,12 @@ public class RestCardController {
 	@GetMapping(value = "/all")
 	public ArrayList<CardWDetailsDTO> getAll() throws Exception {
 		ArrayList<CardWDetailsDTO> cardlist = cs.getAll();
+		return cardlist;
+	}
+	
+	@GetMapping(value = "/leader")
+	public ArrayList<Card> getAllLeader() throws Exception {
+		ArrayList<Card> cardlist = (ArrayList<Card>) cardRepository.findAllLeader();
 		return cardlist;
 	}
 

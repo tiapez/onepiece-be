@@ -17,11 +17,9 @@ public class Deck {
 	@Column
 	int leader;
 	@Column
-	String color;
+	String color1;
 	@Column
-	String cardList;
-	@Column
-	String deck;
+	String color2;
 	@Column(name = "`desc`")
 	String desc;
 	@Column
@@ -68,23 +66,17 @@ public class Deck {
 	public void setLeader(int leader) {
 		this.leader = leader;
 	}
-	public String getColor() {
-		return color;
+	public String getColor2() {
+		return color2;
 	}
-	public void setColor(String color) {
-		this.color = color;
+	public void setColor2(String color2) {
+		this.color2 = color2;
 	}
-	public String getCardList() {
-		return cardList;
+	public String getColor1() {
+		return color1;
 	}
-	public void setCardList(String cardList) {
-		this.cardList = cardList;
-	}
-	public String getDeck() {
-		return deck;
-	}
-	public void setDeck(String deck) {
-		this.deck = deck;
+	public void setColor1(String color1) {
+		this.color1 = color1;
 	}
 	public String getDesc() {
 		return desc;
@@ -121,16 +113,14 @@ public class Deck {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	public Deck(int id, int userId, int leader, String color, String cardList, String deck, String desc, String counter,
-			String side, String note, String format, String name, int cond) {
+	public Deck(int id, int userId, int leader, String color1, String color2, String desc, String counter, String side,
+			String note, String format, String name, int cond) {
 		super();
 		this.id = id;
 		this.userId = userId;
 		this.leader = leader;
-		this.color = color;
-		this.cardList = cardList;
-		this.deck = deck;
+		this.color1 = color1;
+		this.color2 = color2;
 		this.desc = desc;
 		this.counter = counter;
 		this.side = side;
@@ -139,28 +129,15 @@ public class Deck {
 		this.name = name;
 		this.cond = cond;
 	}
-	public Deck(int id, int userId, int leader, String color, String cardList, String deck, String desc, String counter,
-			String side, String note, String format, String name) {
-		super();
-		this.id = id;
-		this.userId = userId;
-		this.leader = leader;
-		this.color = color;
-		this.cardList = cardList;
-		this.deck = deck;
-		this.desc = desc;
-		this.counter = counter;
-		this.side = side;
-		this.note = note;
-		this.format = format;
-		this.name = name;
-	}
+	
 	@Override
 	public String toString() {
-		return "Deck [id=" + id + ", userId=" + userId + ", leader=" + leader + ", color=" + color + ", cardList="
-				+ cardList + ", deck=" + deck + ", desc=" + desc + ", counter=" + counter + ", side=" + side + ", note="
-				+ note + ", format=" + format + ", name=" + name + "]";
+		return "Deck [id=" + id + ", userId=" + userId + ", leader=" + leader + ", color1=" + color1 + ", color2="
+				+ color2 + ", desc=" + desc + ", counter=" + counter + ", side=" + side + ", note=" + note + ", format="
+				+ format + ", name=" + name + ", cond=" + cond + "]";
 	}
+
+
 
 
 	

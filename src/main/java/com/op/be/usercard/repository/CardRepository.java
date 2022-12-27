@@ -14,5 +14,10 @@ public interface CardRepository extends JpaRepository<Card, Long> {
 
 	@Query(value = " Select card.* " + "From card " + "where set_id = :set ", nativeQuery = true)
 	List<Card> findSetCard(@Param("set") int set);
+	
+	@Query(" SELECT c " + 
+	"FROM Card c " + 
+	"WHERE c.cardType = 'Leader'  ")
+	List<Card> findAllLeader();
 
 }
