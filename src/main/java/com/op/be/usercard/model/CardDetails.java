@@ -10,7 +10,7 @@ public class CardDetails{
 	@Id
 	int id;
 	@Column
-	int cod_condition;
+	int codCondition;
 	@Column(name = "`language`")
 	String language;
 	@Column(name = "`condition`")
@@ -26,12 +26,12 @@ public class CardDetails{
 		this.id = id;
 	}
 
-	public int getCod_condition() {
-		return cod_condition;
+	public int getCodCondition() {
+		return codCondition;
 	}
 
-	public void setCod_condition(int cod_condition) {
-		this.cod_condition = cod_condition;
+	public void setCodCondition(int codCondition) {
+		this.codCondition = codCondition;
 	}
 
 	public String getCondition() {
@@ -60,7 +60,7 @@ public class CardDetails{
 
 	public CardDetails(int id, String condition, String language, String condDesc) {
 		super();
-		this.cod_condition = id;
+		this.codCondition = id;
 		this.condition = condition;
 		this.language = language;
 		this.condDesc = condDesc;
@@ -68,7 +68,6 @@ public class CardDetails{
 
 	public CardDetails() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 }

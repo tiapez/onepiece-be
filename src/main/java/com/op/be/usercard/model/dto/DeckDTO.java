@@ -26,11 +26,11 @@ public class DeckDTO {
 		super();
 	}
 	
-	public DeckDTO(Card card, Deck deck, Long qtyOwned, int qtyRequired) {
+	public DeckDTO(Card card, Deck deck, Long qtyOwned, int qtyRequired, int qtyMax) {
 		super();
 		this.deck = deck;
 		if(card != null)
-		this.card = new DeckCardDTO(card,qtyOwned.intValue(),qtyRequired);
+		this.card = new DeckCardDTO(card,qtyOwned.intValue(),qtyRequired, qtyMax);
 	}
 	
 	public DeckDTO(Card card, Deck deck, Long qtyOwned) {

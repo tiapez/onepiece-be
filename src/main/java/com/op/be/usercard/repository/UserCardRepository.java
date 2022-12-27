@@ -31,14 +31,14 @@ public interface UserCardRepository extends JpaRepository<UserCard, Long> {
 	@Query("SELECT uc " + "FROM UserCard uc "
 			+ "INNER JOIN com.op.be.usercard.model.User u ON u.nick = :user AND u.id = uc.userId "
 			+ "INNER JOIN CardDetails cd ON cd.language = u.language "
-			+ "AND cd.cod_condition = u.condition AND uc.detailsId = cd.id " + "WHERE uc.cardId = :cardId ")
+			+ "AND cd.codCondition = u.condition AND uc.detailsId = cd.id " + "WHERE uc.cardId = :cardId ")
 	Optional<UserCard> findCardUserClassic(@Param("cardId") int cardId, @Param("user") String user);
 
 	@Transactional
 	@Modifying
 	@Query("INSERT INTO UserCard (userId,cardId,detailsId,qty) " + "SELECT u.id,:cardId,cd.id,:qty "
 			+ "from com.op.be.usercard.model.User u INNER JOIN CardDetails cd "
-			+ "ON u.language = cd.language AND u.nick = :user " + "AND u.condition = cd.cod_condition "
+			+ "ON u.language = cd.language AND u.nick = :user " + "AND u.condition = cd.codCondition "
 			+ "WHERE u.nick = :user ")
 	void insertUserCardClassic(@Param("cardId") int cardId, @Param("user") String user, @Param("qty") int qty);
 

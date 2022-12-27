@@ -30,7 +30,7 @@ public interface CardUserCustomRepository extends JpaRepository<Card, Long> {
 			+ "(uc.detailsId is null and uc.userId is null and uc.cardId is null) "
 			+ "OR ( uc.detailsId = cd.id and uc.userId = u.id and uc.cardId = c.id) "
 			+ "WHERE c.setId = :set  "
-			+ "AND cd.language = u.language AND cd.cod_condition = u.condition " 
+			+ "AND cd.language = u.language AND cd.codCondition = u.condition " 
 			+ "ORDER BY  c.number ")
 	List<UserCardDTO> findUserCardClassicBySet(@Param("set") String set, @Param("user") String user);
 

@@ -1,40 +1,31 @@
 package com.op.be.usercard.service;
 
-import java.io.IOException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
+import java.util.ArrayList;
 
 import com.op.be.usercard.model.User;
+import com.op.be.usercard.model.dto.CardDetailsDTO;
+import com.op.be.usercard.model.dto.UserCardDTO;
 
 public interface RestService {
 
-	public String decodeuser(String username) throws IOException, NoSuchAlgorithmException, NoSuchPaddingException,
-			InvalidKeyException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException;
+	public String decodeuser(String username);
+	
+	public String codeuser(String user);
+	
+	public User getuser(String user);
 
-	public String decodepass(String username) throws IOException, NoSuchAlgorithmException, NoSuchPaddingException,
-			InvalidKeyException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException;
+	public String decodenick(String nick);
+	
+	public String codenick(String nick);
+	
+	public String decodepass(String pass);
+	
+	public String codepass(String pass);
+	
+	public String codepasstodb(String pass);
 
-	public String decodenick(String nick) throws IOException, NoSuchAlgorithmException, NoSuchPaddingException,
-			InvalidKeyException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException;
+	ArrayList<CardDetailsDTO> forgeCardDetails(ArrayList<UserCardDTO> userCardDTOList);
 
-	String codeuser(String user) throws IOException, NoSuchAlgorithmException, NoSuchPaddingException,
-			InvalidKeyException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException;
 
-	String codepass(String pass) throws IOException, NoSuchAlgorithmException, NoSuchPaddingException,
-			InvalidKeyException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException;
-
-	User getuser(String user) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException,
-			InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException, IOException;
-
-	String codepasstodb(String pass) throws IOException, NoSuchAlgorithmException, NoSuchPaddingException,
-			InvalidKeyException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException;
-
-	String codenick(String nick) throws IOException, NoSuchAlgorithmException, NoSuchPaddingException,
-			InvalidKeyException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException;
 
 }

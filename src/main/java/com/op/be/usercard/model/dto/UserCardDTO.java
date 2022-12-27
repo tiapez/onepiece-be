@@ -9,6 +9,7 @@ public class UserCardDTO {
 	Card card;
 	UserCard userCard;
 	CardDetails cardDetails;
+	int qtyMax;
 
 	public Card getCard() {
 		return card;
@@ -33,12 +34,29 @@ public class UserCardDTO {
 	public void setCardDetails(CardDetails cardDetails) {
 		this.cardDetails = cardDetails;
 	}
+	
+	public int getQtyMax() {
+		return qtyMax;
+	}
+
+	public void setQtyMax(int qtyMax) {
+		this.qtyMax = qtyMax;
+	}
 
 	public UserCardDTO(Card card, UserCard userCard, CardDetails cardDetails) {
 		super();
 		this.card = card;
 		this.userCard = userCard;
 		this.cardDetails = cardDetails;
+		this.qtyMax = 0;
+	}
+
+	public UserCardDTO(Card card, UserCard userCard, CardDetails cardDetails, int qtyMax) {
+		super();
+		this.card = card;
+		this.userCard = userCard;
+		this.cardDetails = cardDetails;
+		this.qtyMax = qtyMax;
 	}
 
 	public UserCardDTO() {

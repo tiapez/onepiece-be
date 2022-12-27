@@ -2,23 +2,19 @@ package com.op.be.usercard.service;
 
 import java.util.ArrayList;
 
-import com.op.be.usercard.model.dto.CardWDetailsDTO;
-import com.op.be.usercard.utils.UserDeck;
+import com.op.be.usercard.model.Card;
+import com.op.be.usercard.model.dto.CardDetailsDTO;
 
 public interface CardService {
 
-	ArrayList<CardWDetailsDTO> getCardDetails(String nickCr, String set) throws Exception;
+	ArrayList<CardDetailsDTO> getCardDetails(String nickCr, String set);
 
-	ArrayList<CardWDetailsDTO> getCardClassic(String nickCr, String set) throws Exception;
+	ArrayList<CardDetailsDTO> getCardClassic(String nickCr, String set);
 
-	ArrayList<CardWDetailsDTO> getAll();
+	ArrayList<CardDetailsDTO> getAll();
 
 	int getDetailsId(String l, int c);
 
-	void saveDeck(UserDeck userDeck);
-
-	ArrayList<CardWDetailsDTO> getCardDetailsDeck(String lang, String color1, String color2, int codCond, String nickCr)
-			throws Exception;
-
+	ArrayList<Card> getAllLeader();
 
 }

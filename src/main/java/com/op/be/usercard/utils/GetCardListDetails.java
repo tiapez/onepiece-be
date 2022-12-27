@@ -15,14 +15,14 @@ public class GetCardListDetails {
 		    String n = "ST02";
 		    System.out.println(setnametrunc);
 		    
-		    data = data.replaceAll("\\,", "\\$");
+		    data = data.replace("\\,", "\\$");
 		    data = data.replace("'", "\\\'");
 		    data = data.replace("Trigger[Trigger]", "/Trigger/");
 		    data = data.replace("Cost", ",");
-		    data = data.replaceAll("Life", ",");
-		    data = data.replaceAll(" ,", " Life");
+		    data = data.replace("Life", ",");
+		    data = data.replace(" ,", " Life");
 		    data = data.replace("Counter", ",");
-		    data = data.replaceAll("\\[,\\]", "/Counter/");
+		    data = data.replace("\\[,\\]", "/Counter/");
 		    data = data.replace("Power", ",");
 		    data = data.replace("Color", ",");
 		    data = data.replace("Type", ",");
@@ -42,53 +42,53 @@ public class GetCardListDetails {
 		    data = data.replace("C\r", ",Common,");
 		    data = data.replace("L\r", ",Leader,");
 		    data = data.replace("Card Set(s)", ",3");
-//		    data = data.replaceAll("\r\n", "");
-//		    data = data.replaceAll("\n\r", "");
-//		    data = data.replaceAll("\r", "");
-//		    data = data.replaceAll("\n", "");
-		    data = data.replaceAll(setname, setnametrunc);
-		    data = data.replaceAll("➀", "/1/");
-		    data = data.replaceAll("①", "/1/");
-		    data = data.replaceAll("➁", "/2/");
-		    data = data.replaceAll("③", "/3/");
-		    data = data.replaceAll("➃", "/4/");
-		    data = data.replaceAll(" ➀ ", "/1/");
-		    data = data.replaceAll(" ① ", "/1/");
-		    data = data.replaceAll(" ➁ ", "/2/");
-		    data = data.replaceAll(" ③ ", "/3/");
-		    data = data.replaceAll(" ➃ ", "/4/");
-		    //data = data.replaceAll("-ROMANCE DAWN- \\[OP-01\\]", ")\r\n insert into card (number,rarity,card-type,name,cost,role,power,counter,color,type,effect,set) values(");
+//		    data = data.replace("\r\n", "");
+//		    data = data.replace("\n\r", "");
+//		    data = data.replace("\r", "");
+//		    data = data.replace("\n", "");
+		    data = data.replace(setname, setnametrunc);
+		    data = data.replace("➀", "/1/");
+		    data = data.replace("①", "/1/");
+		    data = data.replace("➁", "/2/");
+		    data = data.replace("③", "/3/");
+		    data = data.replace("➃", "/4/");
+		    data = data.replace(" ➀ ", "/1/");
+		    data = data.replace(" ① ", "/1/");
+		    data = data.replace(" ➁ ", "/2/");
+		    data = data.replace(" ③ ", "/3/");
+		    data = data.replace(" ➃ ", "/4/");
+		    //data = data.replace("-ROMANCE DAWN- \\[OP-01\\]", ")\r\n insert into card (number,rarity,card-type,name,cost,role,power,counter,color,type,effect,set) values(");
 
-//		    data = data.replaceAll("OP-01", "");
-//		    data = data.replaceAll("\\[\\]", "");
-		    data = data.replaceAll("\\[DON!! x1\\]", "/DON!! x1/");
-		    data = data.replaceAll("\\[DON!! x2\\]", "/DON!! x2/");
-		    data = data.replaceAll("\\[DON!! x3\\]", "/DON!! x3/");
-		    data = data.replaceAll("\\[Your Turn\\]", "/Your Turn/");
-		    data = data.replaceAll("\\[Activate: Main\\]", "/Activate: Main/");
-		    data = data.replaceAll("\\[On Play\\]", "/On Play/");
-		    data = data.replaceAll("\\[On K.O.\\]", "/On K.O./");
-		    data = data.replaceAll("\\[When Attacking\\]", "/When Attacking/");
-		    data = data.replaceAll("\\[On Opponent Turn\\]", "/On Opponent Turn/");
-		    data = data.replaceAll("\\[On Block\\]", "/On Block/");
-		    data = data.replaceAll("\\[Blocker\\]", "/Blocker/");
-		    data = data.replaceAll("\\[Rush\\]", "/Rush/");
-		    data = data.replaceAll("\\[Counter\\]", "/Counter/");
-		    data = data.replaceAll("\\[Main\\]", "/Main/");
-		    data = data.replaceAll("\\[Banish\\]", "/Banish/");
-		    data = data.replaceAll("\\[Double Attack\\]", "/Double Attack/");
-		    data = data.replaceAll("\\[Once Per Turn\\]", "/Once Per Turn/");
-		    data = data.replaceAll("\\[End of Your Turn\\]", "/End of Your Turn/");
-		    data = data.replaceAll("\\[Opponent\\\' Turn\\]", "/Opponent\\\' Turn/");
-		    data = data.replaceAll("DON!! −1", "\\[DON!! −1\\]");
-		    data = data.replaceAll("DON!! −2", "\\[DON!! −2\\]");
-		    data = data.replaceAll("DON!! −3", "\\[DON!! −3\\]");
-		    data = data.replaceAll("DON!! −4", "\\[DON!! −4\\]");
-		    data = data.replaceAll("DON!! −5", "\\[DON!! −5\\]");
-		    data = data.replaceAll("DON!! −6", "\\[DON!! −6\\]");
-		    data = data.replaceAll("-", " ");
-		    data = data.replaceAll(" -", " ");
-		    data = data.replaceAll("−", "-");
+//		    data = data.replace("OP-01", "");
+//		    data = data.replace("\\[\\]", "");
+		    data = data.replace("\\[DON!! x1\\]", "/DON!! x1/");
+		    data = data.replace("\\[DON!! x2\\]", "/DON!! x2/");
+		    data = data.replace("\\[DON!! x3\\]", "/DON!! x3/");
+		    data = data.replace("\\[Your Turn\\]", "/Your Turn/");
+		    data = data.replace("\\[Activate: Main\\]", "/Activate: Main/");
+		    data = data.replace("\\[On Play\\]", "/On Play/");
+		    data = data.replace("\\[On K.O.\\]", "/On K.O./");
+		    data = data.replace("\\[When Attacking\\]", "/When Attacking/");
+		    data = data.replace("\\[On Opponent Turn\\]", "/On Opponent Turn/");
+		    data = data.replace("\\[On Block\\]", "/On Block/");
+		    data = data.replace("\\[Blocker\\]", "/Blocker/");
+		    data = data.replace("\\[Rush\\]", "/Rush/");
+		    data = data.replace("\\[Counter\\]", "/Counter/");
+		    data = data.replace("\\[Main\\]", "/Main/");
+		    data = data.replace("\\[Banish\\]", "/Banish/");
+		    data = data.replace("\\[Double Attack\\]", "/Double Attack/");
+		    data = data.replace("\\[Once Per Turn\\]", "/Once Per Turn/");
+		    data = data.replace("\\[End of Your Turn\\]", "/End of Your Turn/");
+		    data = data.replace("\\[Opponent\\\' Turn\\]", "/Opponent\\\' Turn/");
+		    data = data.replace("DON!! −1", "\\[DON!! −1\\]");
+		    data = data.replace("DON!! −2", "\\[DON!! −2\\]");
+		    data = data.replace("DON!! −3", "\\[DON!! −3\\]");
+		    data = data.replace("DON!! −4", "\\[DON!! −4\\]");
+		    data = data.replace("DON!! −5", "\\[DON!! −5\\]");
+		    data = data.replace("DON!! −6", "\\[DON!! −6\\]");
+		    data = data.replace("-", " ");
+		    data = data.replace(" -", " ");
+		    data = data.replace("−", "-");
 
 		  String[] asd = data.split(",");
 		  String rowsValue = "";
@@ -96,23 +96,23 @@ public class GetCardListDetails {
 				  		  
 			  if(string.length()<6)
 			  {
-				    string = string.replaceAll("\r\n", "");
-				    string = string.replaceAll("\n\r", "");
-				    string = string.replaceAll("\r", "");
-				    string = string.replaceAll("\n", "");
+				    string = string.replace("\r\n", "");
+				    string = string.replace("\n\r", "");
+				    string = string.replace("\r", "");
+				    string = string.replace("\n", "");
 			  }
 			  else {
 				 if(string.substring(0, 6).equals("Effect")) {
-					 string = string.replaceAll("\r\n", "@");
-					    string = string.replaceAll("\n\r", "@");
-					    string = string.replaceAll("\r", "@");
-					    string = string.replaceAll("\n", "@");
+					 string = string.replace("\r\n", "@");
+					    string = string.replace("\n\r", "@");
+					    string = string.replace("\r", "@");
+					    string = string.replace("\n", "@");
 					    string = string.replace("Effect@", "");
 				 }else {
-					 string = string.replaceAll("\r\n", "");
-					    string = string.replaceAll("\n\r", "");
-					    string = string.replaceAll("\r", "");
-					    string = string.replaceAll("\n", "");
+					 string = string.replace("\r\n", "");
+					    string = string.replace("\n\r", "");
+					    string = string.replace("\r", "");
+					    string = string.replace("\n", "");
 				 }
 				 
 			  }
@@ -132,7 +132,6 @@ public class GetCardListDetails {
 		  
 		  
 		  String [] rows = rowsValue.split("\r\n");
-		  System.out.println(rowsValue);
 		  for (int i = 1; i< rows.length; i++) {
 			String number1 =rows[i].split(",")[0].replace(" ","");
 			String number2 =rows[i-1].split(",")[0].replace(" ","");

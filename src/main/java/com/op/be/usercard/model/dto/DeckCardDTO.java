@@ -7,6 +7,7 @@ public class DeckCardDTO {
 	Card card;
 	int qtyOwned;
 	int qtyRequired;
+	int qtyMax;
 	
 	
 	public Card getCard() {
@@ -30,10 +31,19 @@ public class DeckCardDTO {
 		this.qtyRequired = qtyRequired;
 	}
 	
+	public int getQtyMax() {
+		return qtyMax;
+	}
+	
+	public void setQtyMax(int qtyMax) {
+		this.qtyMax = qtyMax;
+	}
+	
 	public DeckCardDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 	public DeckCardDTO(Card card, int qty) {
 		super();
 		this.card = card;
@@ -45,6 +55,14 @@ public class DeckCardDTO {
 		this.card = card;
 		this.qtyOwned = qtyOwned;
 		this.qtyRequired = qtyRequired;
+	}
+	
+	public DeckCardDTO(Card card, int qtyOwned, int qtyRequired, int qtyMax) {
+		super();
+		this.card = card;
+		this.qtyOwned = qtyOwned;
+		this.qtyRequired = qtyRequired;
+		this.qtyMax = qtyMax;
 	}
 	
 	@Override

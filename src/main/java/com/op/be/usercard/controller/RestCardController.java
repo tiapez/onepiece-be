@@ -9,48 +9,34 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.op.be.usercard.model.Card;
-import com.op.be.usercard.model.dto.CardWDetailsDTO;
-import com.op.be.usercard.repository.CardRepository;
+import com.op.be.usercard.model.dto.CardDetailsDTO;
 import com.op.be.usercard.service.CardService;
 
 @RestController
-@RequestMapping("/card")
+@RequestMapping("api/card")
 public class RestCardController {
 
 	@Autowired
-	CardRepository cardRepository;
+	CardService cardService;
 
-	@Autowired
-	CardService cs;
-
-	@GetMapping(value = "/getAllDetails")
-	public ArrayList<CardWDetailsDTO> getAllDetails(@RequestParam("nick") String nick, @RequestParam("set") String set)
-			throws Exception {
-		if(nick.equals(""))
-			return null;
-		ArrayList<CardWDetailsDTO> cardlist = cs.getCardDetails(nick, set);
-
-		return cardlist;
+	@GetMapping("/getAllDetails")
+	public ArrayList<CardDetailsDTO> getAllDetails(@RequestParam("nick") String nick, @RequestParam("set") String set){
+		return cardService.getCardDetails(nick, set);
 	}
 
-	@GetMapping(value = "/getAllClassic")
-	public ArrayList<CardWDetailsDTO> getAllClassic(@RequestParam("nick") String nick, @RequestParam("set") String set)
-			throws Exception {
-		ArrayList<CardWDetailsDTO> cardlist = cs.getCardClassic(nick, set);
-
-		return cardlist;
+	@GetMapping("/getAllClassic")
+	public ArrayList<CardDetailsDTO> getAllClassic(@RequestParam("nick") String nick, @RequestParam("set") String set){
+		return cardService.getCardClassic(nick, set);
 	}
 
-	@GetMapping(value = "/all")
-	public ArrayList<CardWDetailsDTO> getAll() throws Exception {
-		ArrayList<CardWDetailsDTO> cardlist = cs.getAll();
-		return cardlist;
+	@GetMapping("/getAll")
+	public ArrayList<CardDetailsDTO> getAll() throws Exception {
+		return cardService.getAll();
 	}
 	
-	@GetMapping(value = "/leader")
+	@GetMapping("/getAllLeader")
 	public ArrayList<Card> getAllLeader() throws Exception {
-		ArrayList<Card> cardlist = (ArrayList<Card>) cardRepository.findAllLeader();
-		return cardlist;
+		return cardService.getAllLeader();
 	}
 
 }

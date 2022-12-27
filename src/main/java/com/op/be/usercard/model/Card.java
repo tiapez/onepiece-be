@@ -161,7 +161,6 @@ public class Card {
 
 	public Card() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -170,11 +169,5 @@ public class Card {
 				+ ", color=" + color + ", cardType=" + cardType + ", type=" + type + ", effect=" + effect + ", cost="
 				+ cost + ", power=" + power + ", counter=" + counter + ", role=" + role + "]";
 	}
-
-//	public String getImg() throws UnsupportedEncodingException {
-//		byte[] encodeBase64 = Base64.getEncoder().encode(this.getImage());
-//		String base64Encoded = new String(encodeBase64, "UTF-8");
-//		return base64Encoded;
-//	}
 
 }

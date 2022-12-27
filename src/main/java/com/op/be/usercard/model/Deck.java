@@ -34,6 +34,8 @@ public class Deck {
 	String name;
 	@Column
 	int cond;
+	@Column
+	String language;
 	
 	
 	public String getFormat() {
@@ -129,13 +131,31 @@ public class Deck {
 		this.name = name;
 		this.cond = cond;
 	}
-	
+	public Deck(int id, int userId, int leader, String color1, String color2, String desc, String counter, String side,
+			String note, String format, String name, int cond, String language) {
+		super();
+		this.id = id;
+		this.userId = userId;
+		this.leader = leader;
+		this.color1 = color1;
+		this.color2 = color2;
+		this.desc = desc;
+		this.counter = counter;
+		this.side = side;
+		this.note = note;
+		this.format = format;
+		this.name = name;
+		this.cond = cond;
+		this.language = language;
+	}
 	@Override
 	public String toString() {
 		return "Deck [id=" + id + ", userId=" + userId + ", leader=" + leader + ", color1=" + color1 + ", color2="
 				+ color2 + ", desc=" + desc + ", counter=" + counter + ", side=" + side + ", note=" + note + ", format="
-				+ format + ", name=" + name + ", cond=" + cond + "]";
+				+ format + ", name=" + name + ", cond=" + cond + ", language=" + language + "]";
 	}
+
+	
 
 
 

@@ -2,7 +2,7 @@ package com.op.be.usercard.model.dto;
 
 public class DetailsDTO {
 
-	int cod_condition;
+	int codCondition;
 	String language;
 	String condition;
 	int qty;
@@ -10,7 +10,7 @@ public class DetailsDTO {
 
 	public DetailsDTO(int cod_condition, String language, String condition, int qty, int userCardId) {
 		super();
-		this.cod_condition = cod_condition;
+		this.codCondition = cod_condition;
 		this.language = language;
 		this.condition = condition;
 		this.qty = qty;
@@ -18,11 +18,11 @@ public class DetailsDTO {
 	}
 
 	public int getCodCondition() {
-		return cod_condition;
+		return codCondition;
 	}
 
-	public void setCodCondition(int cod_condition) {
-		this.cod_condition = cod_condition;
+	public void setCodCondition(int codCondition) {
+		this.codCondition = codCondition;
 	}
 
 	public String getLanguage() {
@@ -59,7 +59,7 @@ public class DetailsDTO {
 
 	@Override
 	public String toString() {
-		return "DetailsDTO [cod_condition=" + cod_condition + ", language=" + language + ", condition=" + condition
+		return "DetailsDTO [cod_condition=" + codCondition + ", language=" + language + ", condition=" + condition
 				+ ", qty=" + qty + ", userCardId=" + userCardId + "]";
 	}
 
