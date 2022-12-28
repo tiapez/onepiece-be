@@ -28,7 +28,6 @@ public class CardLimitId implements Serializable{
 	
 	public CardLimitId() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	public CardLimitId(int cardId, String format) {

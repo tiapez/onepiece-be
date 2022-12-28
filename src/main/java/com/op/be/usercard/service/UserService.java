@@ -3,10 +3,9 @@ package com.op.be.usercard.service;
 import javax.servlet.http.HttpServletResponse;
 
 import com.op.be.usercard.model.User;
+import com.op.be.usercard.model.dto.UserDTO;
 
 public interface UserService {
-
-	boolean saveUser(User user);
 
 	boolean userValidation(String username);
 
@@ -14,10 +13,12 @@ public interface UserService {
 
 	boolean mailValidation(String mail);
 
-	String saveUserConfig(User user, String nick);
-
 	User getUserCryptedByNick(String nick);
 
 	String loginValidation(String username, String password, HttpServletResponse response);
+
+	boolean saveUser(UserDTO userDTO);
+
+	String saveUserConfig(UserDTO userDTO, String nick);
 
 }

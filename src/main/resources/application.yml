@@ -1,9 +1,17 @@
+azure:
+  keyvault:
+    enabled: true
+    uri: https://op-key.vault.azure.net
+    client-id: 22bcecb1-6955-426a-a660-cca1fc193e64
+    client-key: 0pU8Q~HaBBD_~_fmZeSRO9mF-9aq8s9.jTw9sc_y
+    tenant-id: 6d4b49a0-7ac2-4821-9872-c20ce31c3f0d
+
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://onepiece-mysql.mysql.database.azure.com:3306/onepiece?sessionVariables=sql_mode=''
-    username: aleyah96
-    password: CiccioJuve69!
+    url: ${DBUrl}
+    username: ${UserDB}
+    password: ${DBPass}
   jpa:
     hibernate.ddl-auto: update
     generate-ddl: true
@@ -12,6 +20,9 @@ spring:
 
 server:
   port: 9191  
+  
+
+
   
 
 

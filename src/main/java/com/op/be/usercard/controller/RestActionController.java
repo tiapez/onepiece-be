@@ -1,14 +1,7 @@
 package com.op.be.usercard.controller;
 
-import java.io.IOException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.util.Optional;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -42,10 +35,9 @@ public class RestActionController {
 			@RequestParam(value = "cardId") int cardId, @RequestParam(value = "nick") String nick,
 			@RequestParam(value = "language", required = false) String language,
 			@RequestParam(value = "condition", required = false, defaultValue = "0") int condition)
-			throws IOException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException,
-			InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException {
+			{
 
-		Optional<UserCard> cu = null;
+		Optional<UserCard> cu;
 		UserCard userCard = null;
 		if (language == null && condition == 0) {
 			cu = userCardRepository.findCardUserClassic(cardId, restService.decodenick(nick));
@@ -77,9 +69,8 @@ public class RestActionController {
 			@RequestParam(value = "cardId") int cardId, @RequestParam(value = "nick") String nick,
 			@RequestParam(value = "language", required = false) String language,
 			@RequestParam(value = "condition", required = false, defaultValue = "0") int condition)
-			throws IOException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException,
-			InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException {
-		Optional<UserCard> cu = null;
+			{
+		Optional<UserCard> cu;
 		if (language == null && condition == 0) {
 			cu = userCardRepository.findCardUserClassic(cardId, restService.decodenick(nick));
 		} else {
@@ -105,5 +96,6 @@ public class RestActionController {
 			userCardRepository.delete(userCard);
 		}
 	}
+
 
 }

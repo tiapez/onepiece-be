@@ -61,7 +61,6 @@ public class UserCardDTO {
 
 	public UserCardDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

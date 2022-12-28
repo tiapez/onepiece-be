@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.op.be.usercard.model.Card;
 import com.op.be.usercard.model.dto.CardDetailsDTO;
-import com.op.be.usercard.model.dto.DeckDTO;
+import com.op.be.usercard.model.dto.DeckCardRow;
 import com.op.be.usercard.model.dto.UserCardDTO;
 import com.op.be.usercard.repository.CardRepository;
 import com.op.be.usercard.repository.custom.CardUserCustomRepository;
@@ -31,8 +31,7 @@ public class CardServiceImpl implements CardService {
 		
 		ArrayList<UserCardDTO> userCardDTOList = (ArrayList<UserCardDTO>) cardUserCustomRepository.findUserCardDetailsBySet(set,
 				restService.decodenick(nickCr));
-		ArrayList<CardDetailsDTO> cardList = restService.forgeCardDetails(userCardDTOList);
-		return cardList;
+		return restService.forgeCardDetails(userCardDTOList);
 	}
 	
 
@@ -41,8 +40,7 @@ public class CardServiceImpl implements CardService {
 		ArrayList<UserCardDTO> userCardDTOList = (ArrayList<UserCardDTO>) cardUserCustomRepository.findUserCardClassicBySet(set,
 				restService.decodenick(nickCr));
 
-		ArrayList<CardDetailsDTO> cardList = restService.forgeCardDetails(userCardDTOList);
-		return cardList;
+		return restService.forgeCardDetails(userCardDTOList);
 	}
 
 	@Override
@@ -56,7 +54,7 @@ public class CardServiceImpl implements CardService {
 	}
 	
 	
-	public DeckDTO getDeckDTO() {
+	public DeckCardRow getDeckDTO() {
 		return null;
 	}
 	
@@ -68,10 +66,6 @@ public class CardServiceImpl implements CardService {
 
 	@Override
 	public int getDetailsId(String l, int c) {
-
-		if (l.equals("ENG")) {
-		}
-
 		if (l.equals("JAP")) {
 			c = c + 6;
 		}

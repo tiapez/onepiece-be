@@ -2,6 +2,7 @@ package com.op.be.usercard.model.dto;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import com.op.be.usercard.model.Deck;
 
@@ -17,11 +18,11 @@ public class UserDeckDTO {
 		this.deck = deck;
 	}
 	
-	public ArrayList<DeckCardDTO> getCardList() {
+	public List<DeckCardDTO> getCardList() {
 		return cardList;
 	}
-	public void setCardList(ArrayList<DeckCardDTO> cardList) {
-		this.cardList = cardList;
+	public void setCardList(List<DeckCardDTO> cardList) {
+		this.cardList = (ArrayList<DeckCardDTO>) cardList;
 	}
 	
 	public DeckCardDTO getLeader() {
@@ -32,31 +33,30 @@ public class UserDeckDTO {
 	}
 	public UserDeckDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	public UserDeckDTO(Deck deck) {
 		super();
 		this.deck = deck;
-		this.cardList = new ArrayList<DeckCardDTO>();
+		this.cardList = new ArrayList<>();
 	}
 	
-	public UserDeckDTO(Deck deck, ArrayList<DeckCardDTO> cardList) {
+	public UserDeckDTO(Deck deck, List<DeckCardDTO> cardList) {
 		super();
 		this.deck = deck;
-		this.cardList = cardList;
+		this.cardList = (ArrayList<DeckCardDTO>) cardList;
 	}
 	
 	public UserDeckDTO(Deck deck, DeckCardDTO[] cardList) {
 		super();
 		this.deck = deck;
-		this.cardList = new ArrayList<DeckCardDTO>(Arrays.asList(cardList));
+		this.cardList = new ArrayList<>(Arrays.asList(cardList));
 	}
 	
-	public UserDeckDTO(Deck deck, ArrayList<DeckCardDTO> cardList, DeckCardDTO leader) {
+	public UserDeckDTO(Deck deck, List<DeckCardDTO> cardList, DeckCardDTO leader) {
 		super();
 		this.deck = deck;
-		this.cardList = cardList;
+		this.cardList = (ArrayList<DeckCardDTO>) cardList;
 		this.leader = leader;
 	}
 	public UserDeckDTO(Deck deck, DeckCardDTO card) {

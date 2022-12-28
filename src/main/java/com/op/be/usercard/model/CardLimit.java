@@ -50,7 +50,6 @@ public class CardLimit implements Serializable{
 
 	public CardLimit() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public CardLimit(int cardId, int qtyMax, String format) {

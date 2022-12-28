@@ -8,9 +8,9 @@ public class DetailsDTO {
 	int qty;
 	int userCardId;
 
-	public DetailsDTO(int cod_condition, String language, String condition, int qty, int userCardId) {
+	public DetailsDTO(int codCondition, String language, String condition, int qty, int userCardId) {
 		super();
-		this.codCondition = cod_condition;
+		this.codCondition = codCondition;
 		this.language = language;
 		this.condition = condition;
 		this.qty = qty;

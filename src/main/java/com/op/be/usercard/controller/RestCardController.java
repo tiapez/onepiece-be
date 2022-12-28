@@ -1,6 +1,6 @@
 package com.op.be.usercard.controller;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,22 +20,22 @@ public class RestCardController {
 	CardService cardService;
 
 	@GetMapping("/getAllDetails")
-	public ArrayList<CardDetailsDTO> getAllDetails(@RequestParam("nick") String nick, @RequestParam("set") String set){
+	public List<CardDetailsDTO> getAllDetails(@RequestParam("nick") String nick, @RequestParam("set") String set){
 		return cardService.getCardDetails(nick, set);
 	}
 
 	@GetMapping("/getAllClassic")
-	public ArrayList<CardDetailsDTO> getAllClassic(@RequestParam("nick") String nick, @RequestParam("set") String set){
+	public List<CardDetailsDTO> getAllClassic(@RequestParam("nick") String nick, @RequestParam("set") String set){
 		return cardService.getCardClassic(nick, set);
 	}
 
 	@GetMapping("/getAll")
-	public ArrayList<CardDetailsDTO> getAll() throws Exception {
+	public List<CardDetailsDTO> getAll(){
 		return cardService.getAll();
 	}
 	
 	@GetMapping("/getAllLeader")
-	public ArrayList<Card> getAllLeader() throws Exception {
+	public List<Card> getAllLeader(){
 		return cardService.getAllLeader();
 	}
 

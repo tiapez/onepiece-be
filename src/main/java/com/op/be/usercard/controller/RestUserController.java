@@ -1,13 +1,5 @@
 package com.op.be.usercard.controller;
 
-import java.io.IOException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.op.be.usercard.model.User;
+import com.op.be.usercard.model.dto.UserDTO;
 import com.op.be.usercard.service.UserService;
 
 @RestController
@@ -32,32 +25,30 @@ public class RestUserController {
 	UserService userService;
 
 	@GetMapping("/getUser")
-	public User getUser(@RequestParam("nick") String nick)
-			throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException,
-			InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException, IOException {
+	public User getUser(@RequestParam("nick") String nick){
 		return userService.getUserCryptedByNick(nick);
 	}
 
 	@PostMapping("/saveUser")
-	public boolean saveUser(@RequestBody User user) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException, IOException {
+	public boolean saveUser(@RequestBody UserDTO user){
 		return userService.saveUser(user);
 	}
 
 	@PostMapping("/userValidation")
 	public boolean userValidation(@RequestParam("username") String username, HttpServletRequest request,
-			HttpServletResponse response, HttpSession session) throws IOException {
+			HttpServletResponse response, HttpSession session){
 		return userService.userValidation(username);
 	}
 
 	@PostMapping("/nickValidation")
 	public boolean nickValidation(@RequestParam("nick") String nick, HttpServletRequest request,
-			HttpServletResponse response, HttpSession session) throws IOException {
+			HttpServletResponse response, HttpSession session){
 		return userService.nickValidation(nick);
 	}
 	
 	@PostMapping( "/mailValidation")
 	public boolean mailValidation(@RequestParam("mail") String mail, HttpServletRequest request,
-			HttpServletResponse response, HttpSession session) throws IOException {
+			HttpServletResponse response, HttpSession session){
 		return userService.mailValidation(mail);
 	}
 
@@ -68,9 +59,7 @@ public class RestUserController {
 	}
 
 	@PutMapping("/saveUserConfig")
-	public String saveUserConfig(@RequestBody User user, @RequestParam("nick") String nick)
-			throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException,
-			InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException, IOException {
+	public String saveUserConfig(@RequestBody UserDTO user, @RequestParam("nick") String nick){
 		return userService.saveUserConfig(user, nick);
 
 	}

@@ -41,7 +41,6 @@ public class DeckCardDTO {
 	
 	public DeckCardDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	public DeckCardDTO(Card card, int qty) {

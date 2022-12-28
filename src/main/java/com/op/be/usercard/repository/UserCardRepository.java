@@ -14,14 +14,6 @@ import com.op.be.usercard.model.UserCard;
 @Repository("CardUserRepository")
 public interface UserCardRepository extends JpaRepository<UserCard, Long> {
 
-//	@Query("SELECT uc "
-//			+ "FROM UserCard uc "
-//			+ "WHERE uc.cardId = :cardId AND uc.userId = :userId "
-//			+ "AND uc.detailsId = :detailsId ")
-//	Optional<UserCard> findCardUser(@Param("cardId") int cardId,
-//			@Param("userId") int userId,
-//			@Param("detailsId") int detailsId);
-
 	@Query("SELECT uc " + "FROM UserCard uc "
 			+ "INNER JOIN com.op.be.usercard.model.User u ON u.nick = :user AND u.id = uc.userId "
 			+ "WHERE uc.cardId = :cardId " + "AND uc.detailsId = :detailsId ")

@@ -113,7 +113,6 @@ public class Deck {
 	
 	public Deck() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public Deck(int id, int userId, int leader, String color1, String color2, String desc, String counter, String side,
 			String note, String format, String name, int cond) {

@@ -27,7 +27,6 @@ public class DeckCardId implements Serializable {
 	
 	public DeckCardId() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	public DeckCardId(int deckId, int cardId) {

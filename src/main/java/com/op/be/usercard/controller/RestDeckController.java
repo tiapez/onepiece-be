@@ -1,14 +1,6 @@
 package com.op.be.usercard.controller;
 
-import java.io.IOException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.op.be.usercard.model.Deck;
 import com.op.be.usercard.model.dto.CardDetailsDTO;
+import com.op.be.usercard.model.dto.DeckDTO;
 import com.op.be.usercard.model.dto.UserDeckDTO;
 import com.op.be.usercard.service.DeckService;
 
@@ -31,14 +23,13 @@ public class RestDeckController {
 	DeckService deckService;
 
 	@GetMapping("/userDecks")
-	public ArrayList<UserDeckDTO> getUserDeck(@RequestParam String nick) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException, IOException {
+	public List<UserDeckDTO> getUserDeck(@RequestParam String nick){
 		return deckService.getUserDeck(nick);
 	}
 
 	@PostMapping("/deckCardList")
-	public ArrayList<CardDetailsDTO> getCardUser(@RequestBody Deck deck,@RequestParam String nick) throws Exception {
-		ArrayList<CardDetailsDTO> cardlist = deckService.getCardDetailsDeck(deck, nick);
-		return cardlist;
+	public List<CardDetailsDTO> getCardUser(@RequestBody DeckDTO deck,@RequestParam String nick){
+		return deckService.getCardDetailsDeck(deck, nick);
 	}
 
 	@PostMapping("/saveUserDeck")
@@ -47,7 +38,7 @@ public class RestDeckController {
 	}
 	
 	@PostMapping("/saveOnlyDeck")
-	public void saveDeck(@RequestBody Deck deck, @RequestParam String nick) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException, IOException {
+	public void saveDeck(@RequestBody DeckDTO deck, @RequestParam String nick){
 		deckService.saveOnlyDeck(deck, nick);
 	}
 	
