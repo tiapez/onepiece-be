@@ -43,12 +43,12 @@ public class UserServiceImpl implements UserService{
 		return new Gson().toJson(userDTO.getNavbar());
 	}
 	@Override
-	public User getUserCryptedByNick(String nick){
+	public UserDTO getUserCryptedByNick(String nick){
 
 		Optional<User> user = userRepository.findByNick(nick);
-		User u = null;
+		UserDTO u = null;
 		if(user.isPresent()) {
-			u = user.get();
+			u = modelMapper.map(user.get(),UserDTO.class);
 			u.setUsername(restService.codeuser(u.getUsername()));
 			u.setPassword(restService.codepass(u.getPassword()));
 			u.setNick(restService.codenick(u.getNick()));
@@ -59,14 +59,13 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public boolean saveUser(UserDTO userDTO){
+		userDTO.setPassword(restService.codepasstodb(restService.decodepass(userDTO.getPassword())));
+		userDTO.setNick(restService.decodenick(userDTO.getNick()));
+		userDTO.setUsername(restService.decodeuser(userDTO.getUsername()));
+		userDTO.setNavbar("Light");
+		userDTO.setCondition(2);
+		userDTO.setLanguage("ENG");
 		User user = modelMapper.map(userDTO, User.class);
-		user.setPassword(restService.codepasstodb(restService.decodepass(user.getPassword())));
-		user.setNick(restService.decodenick(user.getNick()));
-		user.setUsername(restService.decodeuser(user.getUsername()));
-		user.setNavbar("Light");
-		user.setCondition(2);
-		user.setLanguage("ENG");
-		
 		User u = userRepository.save(user);
 		return u!=null;
 	}

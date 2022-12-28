@@ -2,7 +2,6 @@ package com.op.be.usercard.service;
 
 import javax.servlet.http.HttpServletResponse;
 
-import com.op.be.usercard.model.User;
 import com.op.be.usercard.model.dto.UserDTO;
 
 public interface UserService {
@@ -13,7 +12,7 @@ public interface UserService {
 
 	boolean mailValidation(String mail);
 
-	User getUserCryptedByNick(String nick);
+	UserDTO getUserCryptedByNick(String nick);
 
 	String loginValidation(String username, String password, HttpServletResponse response);
 

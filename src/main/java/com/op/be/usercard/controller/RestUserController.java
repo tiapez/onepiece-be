@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.op.be.usercard.model.User;
 import com.op.be.usercard.model.dto.UserDTO;
 import com.op.be.usercard.service.UserService;
 
@@ -25,7 +24,7 @@ public class RestUserController {
 	UserService userService;
 
 	@GetMapping("/getUser")
-	public User getUser(@RequestParam("nick") String nick){
+	public UserDTO getUser(@RequestParam("nick") String nick){
 		return userService.getUserCryptedByNick(nick);
 	}
 

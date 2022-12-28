@@ -37,74 +37,36 @@ public class User {
 		this.image = image;
 	}
 
-	public String getLanguage() {
-		return language;
+	public int getId() {
+		return id;
 	}
-
+	
 	public void setLanguage(String language) {
 		this.language = language;
-	}
-
-	public int getCondition() {
-		return condition;
 	}
 
 	public void setCondition(int condition) {
 		this.condition = condition;
 	}
 
+	public void setNavbar(String navbar) {
+		this.navbar = navbar;
+	}
+	
+	public String getNick() {
+		return nick;
+	}
+	
 	public String getNavbar() {
 		return navbar;
 	}
 
-	public void setNavbar(String navbar) {
-		this.navbar = navbar;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getNick() {
-		return nick;
-	}
-
-	public void setNick(String nick) {
-		this.nick = nick;
-	}
-
-	public String getMail() {
-		return mail;
-	}
-
-	public void setMail(String mail) {
-		this.mail = mail;
-	}
 
 	public User() {
 		super();
 	}
-
+	
+	
 	public User(String username, String password, String nick, String mail) {
 		super();
 		this.username = username;
