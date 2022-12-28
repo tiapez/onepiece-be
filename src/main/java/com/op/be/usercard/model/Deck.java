@@ -114,6 +114,7 @@ public class Deck {
 	public Deck() {
 		super();
 	}
+	
 	public Deck(int id, int userId, int leader, String color1, String color2, String desc, String counter, String side,
 			String note, String format, String name, int cond) {
 		super();
@@ -130,6 +131,7 @@ public class Deck {
 		this.name = name;
 		this.cond = cond;
 	}
+	
 	public Deck(int id, int userId, int leader, String color1, String color2, String desc, String counter, String side,
 			String note, String format, String name, int cond, String language) {
 		super();
@@ -147,6 +149,7 @@ public class Deck {
 		this.cond = cond;
 		this.language = language;
 	}
+	
 	@Override
 	public String toString() {
 		return "Deck [id=" + id + ", userId=" + userId + ", leader=" + leader + ", color1=" + color1 + ", color2="

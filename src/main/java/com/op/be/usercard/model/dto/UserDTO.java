@@ -1,5 +1,7 @@
 package com.op.be.usercard.model.dto;
 
+import java.util.Arrays;
+
 public class UserDTO {
 
 	int id;
@@ -65,6 +67,12 @@ public class UserDTO {
 	}
 	public void setImage(byte[] image) {
 		this.image = image;
+	}
+	@Override
+	public String toString() {
+		return "UserDTO [id=" + id + ", username=" + username + ", password=" + password + ", nick=" + nick + ", mail="
+				+ mail + ", language=" + language + ", condition=" + condition + ", navbar=" + navbar + ", image="
+				+ Arrays.toString(image) + "]";
 	}
 	
 	

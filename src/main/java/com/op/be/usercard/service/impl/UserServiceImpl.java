@@ -30,7 +30,6 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public String saveUserConfig(UserDTO userDTO,String nick){
-		
 		userRepository.findByNick(restService.decodenick(nick)).ifPresent(u ->{
 			u.setCondition(userDTO.getCondition());
 			u.setLanguage(userDTO.getLanguage());
@@ -45,7 +44,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public UserDTO getUserCryptedByNick(String nick){
 
-		Optional<User> user = userRepository.findByNick(nick);
+		Optional<User> user = userRepository.findByNick(restService.decodenick(nick));
 		UserDTO u = null;
 		if(user.isPresent()) {
 			u = modelMapper.map(user.get(),UserDTO.class);
