@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.op.be.usercard.model.Card;
 import com.op.be.usercard.model.dto.CardDetailsDTO;
+import com.op.be.usercard.model.dto.DeckDTO;
 import com.op.be.usercard.service.CardService;
 
 @RestController
@@ -34,9 +36,9 @@ public class RestCardController {
 		return cardService.getAll();
 	}
 	
-	@GetMapping("/getAllLeader")
-	public List<Card> getAllLeader(){
-		return cardService.getAllLeader();
+	@PostMapping("/deckCardList")
+	public List<CardDetailsDTO> getCardUser(@RequestBody DeckDTO deck,@RequestParam String nick){
+		return cardService.getCardDetailsDeck(deck, nick);
 	}
 
 }

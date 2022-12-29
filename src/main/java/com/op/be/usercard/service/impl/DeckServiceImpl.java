@@ -6,15 +6,15 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.op.be.usercard.model.Card;
 import com.op.be.usercard.model.Deck;
 import com.op.be.usercard.model.DeckCard;
 import com.op.be.usercard.model.User;
-import com.op.be.usercard.model.dto.CardDetailsDTO;
 import com.op.be.usercard.model.dto.DeckCardDTO;
 import com.op.be.usercard.model.dto.DeckCardRow;
 import com.op.be.usercard.model.dto.DeckDTO;
-import com.op.be.usercard.model.dto.UserCardDTO;
 import com.op.be.usercard.model.dto.UserDeckDTO;
+import com.op.be.usercard.repository.CardRepository;
 import com.op.be.usercard.repository.DeckCardRepository;
 import com.op.be.usercard.repository.UserRepository;
 import com.op.be.usercard.repository.custom.DeckCustomRepository;
@@ -36,17 +36,12 @@ public class DeckServiceImpl implements DeckService{
 	@Autowired
 	RestService restService;
 	
+	@Autowired
+	CardRepository cardRepository;
+	
     @Autowired
     private ModelMapper modelMapper;
     
-	@Override
-	public ArrayList<CardDetailsDTO> getCardDetailsDeck(DeckDTO deckDTO, String nickCr){
-		String nick = restService.decodenick(nickCr);
-		ArrayList<UserCardDTO> userCardDTOList = (ArrayList<UserCardDTO>) 
-				deckCustomRepository.findUserCardDetailsByDeck(deckDTO.getFormat(), deckDTO.getColor1(), deckDTO.getColor2(),deckDTO.getCond(), nick);
-		return restService.forgeCardDetails(userCardDTOList);
-	}
-	
 	@Override
 	public void saveDeck(UserDeckDTO userDeck) {
 		deckCardRepository.deleteByDeckId(userDeck.getDeck().getId());
@@ -59,8 +54,8 @@ public class DeckServiceImpl implements DeckService{
 	@Override
 	public void saveOnlyDeck(DeckDTO deckDTO, String nickcr) {
 		userRepository.findByNick(restService.decodenick(nickcr)).ifPresent((User u) -> {
-			deckDTO.setUserId(u.getId());
 			Deck deck = modelMapper.map(deckDTO, Deck.class);
+			deckDTO.setUserId(u.getId());
 			deckCustomRepository.save(deck);
 		});
 	}
@@ -98,4 +93,8 @@ public class DeckServiceImpl implements DeckService{
 		return deckList;
 	}
 	
+	@Override
+	public ArrayList<Card> getAllLeader(){
+		return 	(ArrayList<Card>) cardRepository.findAllLeader();	
+	}
 }

@@ -7,10 +7,11 @@ import org.springframework.stereotype.Service;
 
 import com.op.be.usercard.model.Card;
 import com.op.be.usercard.model.dto.CardDetailsDTO;
-import com.op.be.usercard.model.dto.DeckCardRow;
+import com.op.be.usercard.model.dto.DeckDTO;
 import com.op.be.usercard.model.dto.UserCardDTO;
 import com.op.be.usercard.repository.CardRepository;
 import com.op.be.usercard.repository.custom.CardUserCustomRepository;
+import com.op.be.usercard.repository.custom.DeckCustomRepository;
 import com.op.be.usercard.service.CardService;
 import com.op.be.usercard.service.RestService;
 
@@ -25,6 +26,9 @@ public class CardServiceImpl implements CardService {
 
 	@Autowired
 	RestService restService;
+	
+	@Autowired
+	DeckCustomRepository deckCustomRepository;
 	
 	@Override
 	public ArrayList<CardDetailsDTO> getCardDetails(String nickCr, String set){
@@ -53,17 +57,15 @@ public class CardServiceImpl implements CardService {
 		return cardList;
 	}
 	
-	
-	public DeckCardRow getDeckDTO() {
-		return null;
-	}
-	
 	@Override
-	public ArrayList<Card> getAllLeader(){
-		return 	(ArrayList<Card>) cardRepository.findAllLeader();	
+	public ArrayList<CardDetailsDTO> getCardDetailsDeck(DeckDTO deckDTO, String nickCr){
+		String nick = restService.decodenick(nickCr);
+		ArrayList<UserCardDTO> userCardDTOList = (ArrayList<UserCardDTO>) 
+				deckCustomRepository.findUserCardDetailsByDeck(deckDTO.getFormat(), deckDTO.getColor1(), deckDTO.getColor2(),deckDTO.getCond(), nick);
+		return restService.forgeCardDetails(userCardDTOList);
 	}
-
-
+	
+	
 	@Override
 	public int getDetailsId(String l, int c) {
 		if (l.equals("JAP")) {

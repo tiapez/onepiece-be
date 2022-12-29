@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.op.be.usercard.model.dto.CardDetailsDTO;
+import com.op.be.usercard.model.Card;
 import com.op.be.usercard.model.dto.DeckDTO;
 import com.op.be.usercard.model.dto.UserDeckDTO;
 import com.op.be.usercard.service.DeckService;
@@ -27,11 +27,6 @@ public class RestDeckController {
 		return deckService.getUserDeck(nick);
 	}
 
-	@PostMapping("/deckCardList")
-	public List<CardDetailsDTO> getCardUser(@RequestBody DeckDTO deck,@RequestParam String nick){
-		return deckService.getCardDetailsDeck(deck, nick);
-	}
-
 	@PostMapping("/saveUserDeck")
 	public void saveDeck(@RequestBody UserDeckDTO userDeck) {
 		deckService.saveDeck(userDeck);
@@ -42,7 +37,10 @@ public class RestDeckController {
 		deckService.saveOnlyDeck(deck, nick);
 	}
 	
-	
+	@GetMapping("/allLeader")
+	public List<Card> getAllLeader(){
+		return deckService.getAllLeader();
+	}
 	
 
 }

@@ -38,6 +38,12 @@ public class Deck {
 	String language;
 	
 	
+	public String getLanguage() {
+		return language;
+	}
+	public void setLanguage(String language) {
+		this.language = language;
+	}
 	public String getFormat() {
 		return format;
 	}

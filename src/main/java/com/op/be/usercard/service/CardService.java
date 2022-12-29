@@ -2,8 +2,8 @@ package com.op.be.usercard.service;
 
 import java.util.ArrayList;
 
-import com.op.be.usercard.model.Card;
 import com.op.be.usercard.model.dto.CardDetailsDTO;
+import com.op.be.usercard.model.dto.DeckDTO;
 
 public interface CardService {
 
@@ -15,6 +15,6 @@ public interface CardService {
 
 	int getDetailsId(String l, int c);
 
-	ArrayList<Card> getAllLeader();
+	ArrayList<CardDetailsDTO> getCardDetailsDeck(DeckDTO deckDTO, String nickCr);
 
 }
