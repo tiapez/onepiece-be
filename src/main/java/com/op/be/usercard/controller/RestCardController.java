@@ -21,17 +21,17 @@ public class RestCardController {
 	@Autowired
 	CardService cardService;
 
-	@GetMapping("/getAllDetails")
+	@GetMapping("/allDetails")
 	public List<CardDetailsDTO> getAllDetails(@RequestParam("nick") String nick, @RequestParam("set") String set){
 		return cardService.getCardDetails(nick, set);
 	}
 
-	@GetMapping("/getAllClassic")
+	@GetMapping("/allClassic")
 	public List<CardDetailsDTO> getAllClassic(@RequestParam("nick") String nick, @RequestParam("set") String set){
 		return cardService.getCardClassic(nick, set);
 	}
 
-	@GetMapping("/getAll")
+	@GetMapping("/all")
 	public List<CardDetailsDTO> getAll(){
 		return cardService.getAll();
 	}
