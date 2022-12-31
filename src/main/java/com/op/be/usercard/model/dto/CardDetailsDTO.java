@@ -7,9 +7,9 @@ import com.op.be.usercard.model.Card;
 
 public class CardDetailsDTO {
 
-	Card card;
-	List<DetailsDTO> details;
-	int qtyMax = 0;
+	private Card card;
+	private List<DetailsDTO> details;
+	private int qtyMax = 0;
 
 	public CardDetailsDTO(Card card, DetailsDTO details) {
 		this.card = card;

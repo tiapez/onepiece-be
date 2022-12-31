@@ -2,6 +2,8 @@ package com.op.be.usercard.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -9,33 +11,34 @@ import javax.persistence.Table;
 @Table(name = "card")
 public class Card {
 
-	@Id
+	@Id@
+	GeneratedValue(strategy = GenerationType.AUTO)
 	@Column
-	int id;
+	private int id;
 	@Column
-	String number;
+	private String number;
 	@Column
-	String rarity;
+	private String rarity;
 	@Column
-	String setId;
+	private String setId;
 	@Column
-	String name;
+	private String name;
 	@Column
-	String color;
+	private String color;
 	@Column
-	String cardType;
+	private String cardType;
 	@Column
-	String type;
+	private String type;
 	@Column
-	String effect;
+	private String effect;
 	@Column
-	int cost;
+	private int cost;
 	@Column
-	int power;
+	private int power;
 	@Column
-	int counter;
+	private int counter;
 	@Column
-	String role;
+	private String role;
 
 	public int getId() {
 		return id;

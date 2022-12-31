@@ -7,9 +7,10 @@ import java.util.List;
 import com.op.be.usercard.model.Deck;
 
 public class UserDeckDTO {
-	Deck deck;
-	ArrayList<DeckCardDTO> cardList;
-	DeckCardDTO leader;
+	
+	private Deck deck;
+	private ArrayList<DeckCardDTO> cardList;
+	private DeckCardDTO leader;
 	
 	public Deck getDeck() {
 		return deck;

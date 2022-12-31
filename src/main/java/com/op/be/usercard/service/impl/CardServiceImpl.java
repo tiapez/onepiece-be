@@ -49,7 +49,7 @@ public class CardServiceImpl implements CardService {
 
 	@Override
 	public ArrayList<CardDetailsDTO> getAll() {
-		ArrayList<Card> cards = (ArrayList<Card>) cardRepository.findAll();
+		ArrayList<Card> cards = (ArrayList<Card>) cardRepository.findAllCard();
 		ArrayList<CardDetailsDTO> cardList = new ArrayList<>();
 		for (Card card : cards) {
 			cardList.add(new CardDetailsDTO(card));

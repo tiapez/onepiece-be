@@ -8,15 +8,15 @@ import javax.persistence.Id;
 public class CardDetails{
 
 	@Id
-	int id;
+	private int id;
 	@Column
-	int codCondition;
+	private int codCondition;
 	@Column(name = "`language`")
-	String language;
+	private String language;
 	@Column(name = "`condition`")
-	String condition;
+	private String condition;
 	@Column
-	String condDesc;
+	private String condDesc;
 
 	public int getId() {
 		return id;

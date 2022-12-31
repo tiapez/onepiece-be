@@ -5,9 +5,9 @@ import com.op.be.usercard.model.Card;
 public class DeckCardDTO {
 	
 	Card card;
-	int qtyOwned;
-	int qtyRequired;
-	int qtyMax;
+	private int qtyOwned;
+	private int qtyRequired;
+	private int qtyMax;
 	
 	
 	public Card getCard() {

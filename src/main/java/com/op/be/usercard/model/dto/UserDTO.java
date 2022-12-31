@@ -4,15 +4,15 @@ import java.util.Arrays;
 
 public class UserDTO {
 
-	int id;
-	String username;
-	String password;
-	String nick;
-	String mail;
-	String language;
-	int condition;
-	String navbar;
-	byte[] image;
+	private int id;
+	private String username;
+	private String password;
+	private String nick;
+	private String mail;
+	private String language;
+	private int condition;
+	private String navbar;
+	private byte[] image;
 	
 	public int getId() {
 		return id;

@@ -10,8 +10,8 @@ public class CardLimitId implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	int cardId;
-	String format;
+	private int cardId;
+	private String format;
 	
 	public int getCardId() {
 		return cardId;

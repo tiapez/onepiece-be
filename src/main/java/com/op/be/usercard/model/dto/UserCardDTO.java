@@ -6,10 +6,10 @@ import com.op.be.usercard.model.UserCard;
 
 public class UserCardDTO {
 
-	Card card;
-	UserCard userCard;
-	CardDetails cardDetails;
-	int qtyMax;
+	private Card card;
+	private UserCard userCard;
+	private CardDetails cardDetails;
+	private int qtyMax;
 
 	public Card getCard() {
 		return card;

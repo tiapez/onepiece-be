@@ -40,5 +40,29 @@ public interface UserCardRepository extends JpaRepository<UserCard, Long> {
 			+ "from com.op.be.usercard.model.User u " + "WHERE u.nick = :user ")
 	void insertUserCardDetails(@Param("cardId") int cardId, @Param("user") String user, @Param("detId") int detId,
 			@Param("qty") int qty);
+	
+	@Transactional
+	@Modifying
+	@Query("INSERT INTO UserCard (userId,cardId,detailsId,qty) " 
+			+ "SELECT u.id,c.id,cd.id,:qty "
+			+ "from com.op.be.usercard.model.User u INNER JOIN CardDetails cd "
+			+ "ON u.language = cd.language AND u.nick = :nick AND u.condition = cd.codCondition "
+			+ "INNER JOIN Card c ON c.number = :cardNum AND c.setId = :cardSet ")
+	void importUserCardClassic(@Param("cardNum") String cardNum,@Param("cardSet") String cardSet, @Param("nick") String nick, @Param("qty") int qty);
+
+	@Transactional
+	@Modifying
+	@Query("INSERT INTO UserCard (userId,cardId,detailsId,qty) " + "SELECT u.id,:cardId,:detId,:qty "
+			+ "from com.op.be.usercard.model.User u " + "WHERE u.nick = :user ")
+	void importUserCardDetails(@Param("cardId") int cardId, @Param("user") String user, @Param("detId") int detId,
+			@Param("qty") int qty);
+	
+	@Query("SELECT uc " + "FROM UserCard uc "
+			+ "INNER JOIN com.op.be.usercard.model.User u ON u.nick = :nick AND u.id = uc.userId "
+			+ "INNER JOIN CardDetails cd ON cd.language = u.language "
+			+ "AND cd.codCondition = u.condition AND uc.detailsId = cd.id "
+			+ "INNER JOIN Card c ON c.number = :cardNum AND c.setId = :cardSet AND uc.cardId = c.id ")
+	Optional<UserCard> findCardUserClassic2(@Param("cardNum") String cardNum,@Param("cardSet") String cardSet, @Param("nick") String nick);
+	
 
 }

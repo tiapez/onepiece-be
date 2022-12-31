@@ -13,8 +13,7 @@ spring:
     username: ${UserDB}
     password: ${DBPass}
   jpa:
-    hibernate.ddl-auto: update
-    generate-ddl: true
+    hibernate.ddl-auto: none
     show-sql: true
     spring.jpa.hibernate.dialect: org.hibernate.dialect.MySQL8Dialect
 

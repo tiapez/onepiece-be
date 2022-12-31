@@ -15,14 +15,14 @@ public class CardLimit implements Serializable{
 
 	@Id
 	@Column
-	int cardId;
+	private int cardId;
 
 	@Column
-	int qtyMax;
+	private int qtyMax;
 
 	@Id
 	@Column
-	String format;
+	private String format;
 
 	public int getCardId() {
 		return cardId;

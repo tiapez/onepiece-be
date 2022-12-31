@@ -5,8 +5,8 @@ import com.op.be.usercard.model.Deck;
 
 public class DeckCardRow {
 
-	Deck deck;
-	DeckCardDTO card;
+	private Deck deck;
+	private DeckCardDTO card;
 
 	
 	public Deck getDeck() {

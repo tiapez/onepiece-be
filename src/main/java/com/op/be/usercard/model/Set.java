@@ -9,11 +9,11 @@ public class Set {
 
 	@Id
 	@Column
-	String id;
+	private String id;
 	@Column
-	String name;
+	private String name;
 	@Column
-	int list;
+	private int list;
 
 	public Set() {
 		super();

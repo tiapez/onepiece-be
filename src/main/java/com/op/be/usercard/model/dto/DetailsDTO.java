@@ -2,11 +2,11 @@ package com.op.be.usercard.model.dto;
 
 public class DetailsDTO {
 
-	int codCondition;
-	String language;
-	String condition;
-	int qty;
-	int userCardId;
+	private int codCondition;
+	private String language;
+	private String condition;
+	private int qty;
+	private int userCardId;
 
 	public DetailsDTO(int codCondition, String language, String condition, int qty, int userCardId) {
 		super();

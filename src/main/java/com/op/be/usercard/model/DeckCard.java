@@ -18,13 +18,13 @@ public class DeckCard implements Serializable{
 	
 	@Id
 	@Column
-	int deckId;
+	private int deckId;
 	@Id
 	@Column
-	int cardId;
+	private int cardId;
 	
 	@Column
-	int qty;
+	private int qty;
 
 	public int getDeckId() {
 		return deckId;

@@ -11,23 +11,23 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	int id;
+	private int id;
 	@Column
-	String username;
+	private String username;
 	@Column(name = "`password`")
-	String password;
+	private String password;
 	@Column
-	String nick;
+	private String nick;
 	@Column
-	String mail;
+	private String mail;
 	@Column(name = "`language`")
-	String language;
+	private String language;
 	@Column(name = "`condition`")
-	int condition;
+	private int condition;
 	@Column
-	String navbar;
+	private String navbar;
 	@Column(name = "image")
-	byte[] image;
+	private byte[] image;
 
 
 	public int getId() {

@@ -11,33 +11,43 @@ public class Deck {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	int id;
+	private int id;
 	@Column
-	int userId;
+	private int userId;
 	@Column
-	int leader;
+	private int leader;
 	@Column
-	String color1;
+	private String color1;
 	@Column
-	String color2;
+	private String color2;
 	@Column(name = "`desc`")
-	String desc;
+	private String desc;
 	@Column
-	String counter;
+	private String counter;
 	@Column
-	String side;
+	private String side;
 	@Column
-	String note;
+	private String note;
 	@Column
-	String format;
+	private String format;
 	@Column
-	String name;
+	private String name;
 	@Column
-	int cond;
+	private int cond;
 	@Column
-	String language;
+	private String language;
+	@Column(name = "image")
+	private byte[] image;
 	
 	
+	
+	
+	public byte[] getImage() {
+		return image;
+	}
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
 	public String getLanguage() {
 		return language;
 	}
@@ -122,24 +132,7 @@ public class Deck {
 	}
 	
 	public Deck(int id, int userId, int leader, String color1, String color2, String desc, String counter, String side,
-			String note, String format, String name, int cond) {
-		super();
-		this.id = id;
-		this.userId = userId;
-		this.leader = leader;
-		this.color1 = color1;
-		this.color2 = color2;
-		this.desc = desc;
-		this.counter = counter;
-		this.side = side;
-		this.note = note;
-		this.format = format;
-		this.name = name;
-		this.cond = cond;
-	}
-	
-	public Deck(int id, int userId, int leader, String color1, String color2, String desc, String counter, String side,
-			String note, String format, String name, int cond, String language) {
+			String note, String format, String name, int cond, String language, byte[] image) {
 		super();
 		this.id = id;
 		this.userId = userId;
@@ -154,8 +147,8 @@ public class Deck {
 		this.name = name;
 		this.cond = cond;
 		this.language = language;
+		this.image = image;
 	}
-	
 	@Override
 	public String toString() {
 		return "Deck [id=" + id + ", userId=" + userId + ", leader=" + leader + ", color1=" + color1 + ", color2="
