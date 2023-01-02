@@ -106,8 +106,6 @@ public class ExcellServiceImpl implements ExcellService{
 	}
 
 	public void db(List<UserCardExcel> list, String nick, int type) {
-		
-		boolean flag = false;
 		for (UserCardExcel uce : list) {
 			if(uce.getCond() == 0) {
 				try {
