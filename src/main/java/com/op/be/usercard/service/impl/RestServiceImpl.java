@@ -17,7 +17,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
-import com.microsoft.azure.keyvault.KeyVaultClient;
 import com.op.be.usercard.model.CardDetails;
 import com.op.be.usercard.model.User;
 import com.op.be.usercard.model.UserCard;
@@ -30,8 +29,16 @@ import com.op.be.usercard.service.RestService;
 @Service
 public class RestServiceImpl implements RestService {
 
-	@Autowired
-	KeyVaultClient keyVaultClient;
+	
+	@Value("${UserKey}")
+	private String userKey= "defaultValue\n";
+	@Value("${PassKey}")
+	private String passKey= "defaultValue\n";
+	@Value("${NickKey}")
+	private String nickKey= "defaultValue\n";
+	@Value("${PassToDBKey}")
+	private String passToDBKey= "defaultValue\n";
+	
 
 	@Value("${azure.keyvault.uri}")
 	private String uri;
@@ -47,7 +54,6 @@ public class RestServiceImpl implements RestService {
 	@Override
 	public String decodeuser(String username) {
 		try {
-			String userKey = keyVaultClient.getSecret(uri, "UserKey").value();
 			AlgorithmParameterSpec iv = new IvParameterSpec(userKey.getBytes());
 			SecretKey key = new SecretKeySpec(userKey.getBytes(), aes);
 			byte[] decodeBase64 = Base64.decodeBase64(username);
@@ -65,7 +71,6 @@ public class RestServiceImpl implements RestService {
 	@Override
 	public String decodepass(String password) {
 		try {
-			String passKey = keyVaultClient.getSecret(uri, "PassKey").value();
 			AlgorithmParameterSpec iv = new IvParameterSpec(passKey.getBytes());
 			SecretKey key = new SecretKeySpec(passKey.getBytes(), aes);
 			byte[] decodeBase64 = Base64.decodeBase64(password);
@@ -85,7 +90,6 @@ public class RestServiceImpl implements RestService {
 		try {
 		    byte[] bytesIV = new byte[16];
 		    random.nextBytes(bytesIV);
-			String nickKey = keyVaultClient.getSecret(uri,"NickKey").value();
 			AlgorithmParameterSpec iv = new IvParameterSpec(nickKey.getBytes());
 			SecretKey key = new SecretKeySpec(nickKey.getBytes(), aes);
 			byte[] decodeBase64 = Base64.decodeBase64(nick);
@@ -103,7 +107,7 @@ public class RestServiceImpl implements RestService {
 	@Override
 	public String codeuser(String user) {
 		try {
-			String userKey = keyVaultClient.getSecret(uri, "UserKey").value();
+
 			AlgorithmParameterSpec iv = new IvParameterSpec(userKey.getBytes());
 			SecretKey key = new SecretKeySpec(userKey.getBytes(), aes);
 			Cipher cipher = Cipher.getInstance(cipherString);
@@ -121,7 +125,7 @@ public class RestServiceImpl implements RestService {
 	@Override
 	public String codepass(String pass) {
 		try {
-			String passKey = keyVaultClient.getSecret(uri, "PassKey").value();
+
 			AlgorithmParameterSpec iv = new IvParameterSpec(passKey.getBytes());
 			SecretKey key = new SecretKeySpec(passKey.getBytes(), aes);
 			Cipher cipher = Cipher.getInstance(cipherString);
@@ -139,7 +143,7 @@ public class RestServiceImpl implements RestService {
 	@Override
 	public String codenick(String nick) {
 		try {
-			String nickKey = keyVaultClient.getSecret(uri, "NickKey").value();
+
 			AlgorithmParameterSpec iv = new IvParameterSpec(nickKey.getBytes());
 			SecretKey key = new SecretKeySpec(nickKey.getBytes(), aes);
 			Cipher cipher = Cipher.getInstance(cipherString);
@@ -165,9 +169,9 @@ public class RestServiceImpl implements RestService {
 	@Override
 	public String codepasstodb(String pass) {
 		try {
-			String passToKey = keyVaultClient.getSecret(uri, "PassToDBKey").value();
-			AlgorithmParameterSpec iv = new IvParameterSpec(passToKey.getBytes());
-			SecretKey key = new SecretKeySpec(passToKey.getBytes(), aes);
+
+			AlgorithmParameterSpec iv = new IvParameterSpec(passToDBKey.getBytes());
+			SecretKey key = new SecretKeySpec(passToDBKey.getBytes(), aes);
 			Cipher cipher = Cipher.getInstance(cipherString);
 			cipher.init(Cipher.ENCRYPT_MODE, key, iv);
 			byte[] encValue = cipher.doFinal(pass.getBytes());
