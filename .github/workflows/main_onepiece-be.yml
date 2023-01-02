@@ -49,5 +49,5 @@ jobs:
         with:
           app-name: 'onepiece-be'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2EB8A5EB56424838A3FA8FEC7F212480 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BAB3085BF11642599905A01C51985EF2 }}
           package: '*.jar'
