@@ -1,6 +1,5 @@
 package com.op.be.usercard.service;
 
-import java.io.File;
 import java.io.FileInputStream;
 
 public interface ExcellService {

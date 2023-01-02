@@ -37,10 +37,6 @@ public class RestServiceImpl implements RestService {
 	private String nickKey= "defaultValue\n";
 	@Value("${PassToDBKey}")
 	private String passToDBKey= "defaultValue\n";
-	
-
-	@Value("${azure.keyvault.uri}")
-	private String uri;
 
 	private String cipherString = "AES/CBC/PKCS5Padding";
 	private String aes = "AES";
