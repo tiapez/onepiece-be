@@ -4,7 +4,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,10 +23,5 @@ public class RestUtilController {
 	@PostMapping("/importCardList")
 	public void importCardList(@RequestParam("nick") String nick,@RequestParam("file") MultipartFile file) throws IOException, CryptException{
 		excellService.readExcel(nick,"OP01", (FileInputStream) file.getInputStream());
-	}
-
-	@GetMapping("/exportCardList")
-	public void exportCardList() {
-
 	}
 }

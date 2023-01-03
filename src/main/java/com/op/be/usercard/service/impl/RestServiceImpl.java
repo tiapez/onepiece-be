@@ -58,10 +58,7 @@ public class RestServiceImpl implements RestService {
 	
 	@Override
 	public String decodeuser(String username) throws CryptException {
-			
-			logger.info(userKey); 
-			System.out.println(userKey);
-			System.out.println(keyString);
+
 			AlgorithmParameterSpec iv = new IvParameterSpec(userKey.getBytes());
 			SecretKey key = new SecretKeySpec(userKey.getBytes(), keyString);
 			byte[] decodeBase64 = Base64.decodeBase64(username);

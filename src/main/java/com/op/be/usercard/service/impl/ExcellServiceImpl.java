@@ -1,6 +1,5 @@
 package com.op.be.usercard.service.impl;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -98,7 +97,6 @@ public class ExcellServiceImpl implements ExcellService{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(list.toString());
 		return list;
 	}
 
@@ -128,8 +126,4 @@ public class ExcellServiceImpl implements ExcellService{
 		}
 	}
 	
-	
-	
-	public void readExcel(String set, File file2) {	
-	}
 }

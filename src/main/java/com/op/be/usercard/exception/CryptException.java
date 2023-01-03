@@ -7,9 +7,6 @@ public class CryptException extends Exception{
 	public CryptException(String errorMessage) {
         super(errorMessage);
     }
-	
-	public void Chiper(String error) {
-		
-	}
+
 
 }

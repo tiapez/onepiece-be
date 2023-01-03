@@ -9,7 +9,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "card")
-public class Card {
+public class Card 
+{
 
 	@Id@
 	GeneratedValue(strategy = GenerationType.AUTO)
@@ -40,7 +41,30 @@ public class Card {
 	@Column
 	private String role;
 
-	public int getId() {
+	public Card(int id, String number, String rarity, String setId, String name, String color, String cardType,
+			String type, String effect, int cost, int power, int counter, String role) {
+		super();
+		this.id = id;
+		this.number = number;
+		this.rarity = rarity;
+		this.setId = setId;
+		this.name = name;
+		this.color = color;
+		this.cardType = cardType;
+		this.type = type;
+		this.effect = effect;
+		this.cost = cost;
+		this.power = power;
+		this.counter = counter;
+		this.role = role;
+	}
+
+	public Card() {
+		super();
+	}
+	
+	public int getId() 
+	{
 		return id;
 	}
 
@@ -144,27 +168,7 @@ public class Card {
 		this.role = role;
 	}
 
-	public Card(int id, String number, String rarity, String setId, String name, String color, String cardType,
-			String type, String effect, int cost, int power, int counter, String role) {
-		super();
-		this.id = id;
-		this.number = number;
-		this.rarity = rarity;
-		this.setId = setId;
-		this.name = name;
-		this.color = color;
-		this.cardType = cardType;
-		this.type = type;
-		this.effect = effect;
-		this.cost = cost;
-		this.power = power;
-		this.counter = counter;
-		this.role = role;
-	}
 
-	public Card() {
-		super();
-	}
 
 	@Override
 	public String toString() {

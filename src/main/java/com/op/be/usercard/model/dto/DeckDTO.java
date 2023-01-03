@@ -2,20 +2,20 @@ package com.op.be.usercard.model.dto;
 
 public class DeckDTO {
 	
-	private int id;
-	private int userId;
-	private int leader;
-	private String color1;
-	private String color2;
-	private String desc;
-	private String counter;
-	private String side;
-	private String note;
-	private String format;
-	private String name;
-	private int cond;
-	private String language;
-	private byte[] image;
+	 int id;
+	 int userId;
+	 int leader;
+	 String color1;
+	 String color2;
+	 String desc;
+	 String counter;
+	 String side;
+	 String note;
+	 String format;
+	 String name;
+	 int cond;
+	 String language;
+	 byte[] image;
 	
 	public DeckDTO() {
 		super();

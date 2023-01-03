@@ -3,6 +3,8 @@ package com.op.be.usercard.service.impl;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -101,6 +103,13 @@ public class UserServiceTest {
 		when(userRepository.findByNick(anyString())).thenReturn(ou);
 
 		userServiceImpl.saveUserConfig(user, "");
+		
+		verify(restService).decodenick(anyString());
+		verify(userRepository).findByNick(anyString());
+		verifyNoMoreInteractions(restService);
+		verifyNoMoreInteractions(userRepository);
+		
+		assert(true);
 	}
 	
 	

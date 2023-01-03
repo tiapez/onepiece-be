@@ -137,12 +137,10 @@ public class GetCardListDetails {
 		String[] rows = rowsValue.split("\r\n");
 		int n;
 		if(rows[rows.length-1].equals(",")) {
-			System.out.println("qua");
 			n = rows.length-1;
 		}else {
 			n = rows.length;
 		}
-		System.out.println(rows[rows.length-1]);
 		for (int i = 1; i < n; i++) {
 			String number1 = rows[i].split(",")[0].replace(" ", "");
 			String number2 = rows[i - 1].split(",")[0].replace(" ", "");
