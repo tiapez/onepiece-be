@@ -3,7 +3,6 @@ package com.op.be.usercard.service.impl;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -40,7 +39,6 @@ public class UserServiceTest {
 	@Before
     public void setUp() {
     	MockitoAnnotations.openMocks(this);
-
     }
 	
 	public List<String> getList(){
@@ -96,6 +94,13 @@ public class UserServiceTest {
 	
 	@Test
 	public void saveUserConfig() throws CryptException {
+		UserDTO user = new UserDTO();
+		Optional<User> ou = Optional.empty();
+
+		when(restService.decodenick(anyString())).thenReturn("");
+		when(userRepository.findByNick(anyString())).thenReturn(ou);
+
+		userServiceImpl.saveUserConfig(user, "");
 	}
 	
 	
