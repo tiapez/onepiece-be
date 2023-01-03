@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.op.be.usercard.exception.CryptException;
 import com.op.be.usercard.service.ExcellService;
 
 @RestController
@@ -21,8 +22,7 @@ public class RestUtilController {
 	ExcellService excellService;
 	
 	@PostMapping("/importCardList")
-	public void importCardList(@RequestParam("nick") String nick,@RequestParam("file") MultipartFile file) throws IOException{
-
+	public void importCardList(@RequestParam("nick") String nick,@RequestParam("file") MultipartFile file) throws IOException, CryptException{
 		excellService.readExcel(nick,"OP01", (FileInputStream) file.getInputStream());
 	}
 

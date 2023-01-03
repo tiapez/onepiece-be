@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.op.be.usercard.exception.CryptException;
 import com.op.be.usercard.model.Card;
 import com.op.be.usercard.model.dto.DeckDTO;
 import com.op.be.usercard.model.dto.UserDeckDTO;
@@ -23,7 +24,7 @@ public class RestDeckController {
 	DeckService deckService;
 
 	@GetMapping("/userDecks")
-	public List<UserDeckDTO> getUserDeck(@RequestParam String nick){
+	public List<UserDeckDTO> getUserDeck(@RequestParam String nick) throws CryptException{
 		return deckService.getUserDeck(nick);
 	}
 
@@ -33,7 +34,7 @@ public class RestDeckController {
 	}
 	
 	@PostMapping("/saveOnlyDeck")
-	public void saveDeck(@RequestBody DeckDTO deck, @RequestParam String nick){
+	public void saveDeck(@RequestBody DeckDTO deck, @RequestParam String nick) throws CryptException{
 		deckService.saveOnlyDeck(deck, nick);
 	}
 	

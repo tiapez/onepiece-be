@@ -6,6 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.op.be.usercard.exception.CryptException;
 import com.op.be.usercard.model.Card;
 import com.op.be.usercard.model.Deck;
 import com.op.be.usercard.model.DeckCard;
@@ -52,7 +53,7 @@ public class DeckServiceImpl implements DeckService{
 	}
 	
 	@Override
-	public void saveOnlyDeck(DeckDTO deckDTO, String nickcr) {
+	public void saveOnlyDeck(DeckDTO deckDTO, String nickcr) throws CryptException {
 		userRepository.findByNick(restService.decodenick(nickcr)).ifPresent((User u) -> {
 			Deck deck = modelMapper.map(deckDTO, Deck.class);
 			deckDTO.setUserId(u.getId());
@@ -61,7 +62,7 @@ public class DeckServiceImpl implements DeckService{
 	}
 	
 	@Override
-	public ArrayList<UserDeckDTO> getUserDeck(String nickcr){
+	public ArrayList<UserDeckDTO> getUserDeck(String nickcr) throws CryptException{
 		String nick = restService.decodenick(nickcr);
 		ArrayList<DeckCardRow> deck = (ArrayList<DeckCardRow>) deckCustomRepository.findDeckUser(nick);
 		ArrayList<UserDeckDTO> deckList = new ArrayList<>();

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.op.be.usercard.exception.CryptException;
 import com.op.be.usercard.model.UserCard;
 import com.op.be.usercard.repository.UserCardRepository;
 import com.op.be.usercard.service.CardService;
@@ -34,7 +35,7 @@ public class RestActionController {
 	public void addDetails(HttpServletRequest request, HttpServletResponse response, HttpSession session,
 			@RequestParam(value = "cardId") int cardId, @RequestParam(value = "nick") String nick,
 			@RequestParam(value = "language", required = false) String language,
-			@RequestParam(value = "condition", required = false, defaultValue = "0") int condition)
+			@RequestParam(value = "condition", required = false, defaultValue = "0") int condition) throws CryptException
 			{
 
 		Optional<UserCard> cu;
@@ -69,7 +70,7 @@ public class RestActionController {
 			@RequestParam(value = "cardId") int cardId, @RequestParam(value = "nick") String nick,
 			@RequestParam(value = "language", required = false) String language,
 			@RequestParam(value = "condition", required = false, defaultValue = "0") int condition)
-			{
+					throws CryptException{
 		Optional<UserCard> cu;
 		if (language == null && condition == 0) {
 			cu = userCardRepository.findCardUserClassic(cardId, restService.decodenick(nick));

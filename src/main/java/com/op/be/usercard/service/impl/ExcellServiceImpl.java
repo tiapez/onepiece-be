@@ -16,6 +16,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.op.be.usercard.exception.CryptException;
 import com.op.be.usercard.model.dto.UserCardExcel;
 import com.op.be.usercard.repository.UserCardRepository;
 import com.op.be.usercard.service.ExcellService;
@@ -32,11 +33,9 @@ public class ExcellServiceImpl implements ExcellService{
 	
 	
 	@Override
-	public void readExcel(String nickcr,String set,FileInputStream file) {
+	public void readExcel(String nickcr,String set,FileInputStream file) throws CryptException {
 		List<UserCardExcel> list = getListFromExcel(set,file);
-		System.out.println(nickcr);
 		String nick = restService.decodenick(nickcr);
-		System.out.println(nick);
 		db(list,nick,0);
 	}
 	

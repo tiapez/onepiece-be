@@ -1,21 +1,28 @@
 package com.op.be.usercard.service.impl;
 
 import java.nio.charset.StandardCharsets;
-import java.security.SecureRandom;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.security.spec.AlgorithmParameterSpec;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
+import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.tomcat.util.codec.binary.Base64;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
+import com.op.be.usercard.exception.CryptException;
 import com.op.be.usercard.model.CardDetails;
 import com.op.be.usercard.model.User;
 import com.op.be.usercard.model.UserCard;
@@ -30,131 +37,193 @@ public class RestServiceImpl implements RestService {
 
 	
 	@Value("${UserKey}")
-	private String userKey= "defaultValue\n";
+	private String userKey;
 	@Value("${PassKey}")
-	private String passKey= "defaultValue\n";
+	private String passKey;
 	@Value("${NickKey}")
-	private String nickKey= "defaultValue\n";
+	private String nickKey;
 	@Value("${PassToDBKey}")
-	private String passToDBKey= "defaultValue\n";
-
-	private String cipherString = "AES/CBC/PKCS5Padding";
-	private String aes = "AES";
-
-	SecureRandom random = new SecureRandom();
-
-	private static Logger logger = Logger.getLogger("ErrorLogging");
+	private String passToDBKey;
+	@Value("${Chiper}")
+	private String cipherString;
+	@Value("${Chiper1}")
+	private String keyString;
+	
+	private static String chiperError = "Incorrect cipher string";
+	private static String keyError = "Incorrect key / algorithm";
+	private static String crDrError = "Error while crypting / decrypting";
+	
+	private static final Logger logger = LoggerFactory.getLogger(RestServiceImpl.class);
 	
 	
 	@Override
-	public String decodeuser(String username) {
-		try {
+	public String decodeuser(String username) throws CryptException {
+			
+			logger.info(userKey); 
+			System.out.println(userKey);
+			System.out.println(keyString);
 			AlgorithmParameterSpec iv = new IvParameterSpec(userKey.getBytes());
-			SecretKey key = new SecretKeySpec(userKey.getBytes(), aes);
+			SecretKey key = new SecretKeySpec(userKey.getBytes(), keyString);
 			byte[] decodeBase64 = Base64.decodeBase64(username);
-			Cipher cipher = Cipher.getInstance(cipherString);
-			cipher.init(Cipher.DECRYPT_MODE, key, iv);
+			Cipher cipher;
+			try {
+				cipher = Cipher.getInstance(cipherString);
+				cipher.init(Cipher.DECRYPT_MODE, key, iv);
+				return new String(cipher.doFinal(decodeBase64), StandardCharsets.UTF_8);
+			} catch (IllegalBlockSizeException | BadPaddingException | InvalidKeyException | InvalidAlgorithmParameterException | NoSuchAlgorithmException | NoSuchPaddingException e) {
+				logger.error("RestService - Decoding User");
+				if(e instanceof NoSuchAlgorithmException || e instanceof NoSuchPaddingException  ) {
+					throw new CryptException(chiperError );
+				}
+				if(e instanceof InvalidKeyException || e instanceof InvalidAlgorithmParameterException  ) {
+					throw new CryptException(keyError);
+				}
+				if(e instanceof IllegalBlockSizeException || e instanceof BadPaddingException  ) {
+					throw new CryptException(crDrError);
+				}
+			}
 
-			return new String(cipher.doFinal(decodeBase64), StandardCharsets.UTF_8);
-		} catch (Exception e) {
-			logger.info(e.getMessage());
-		}
+			
+		
 
 		return null;
 	}
 
 	@Override
-	public String decodepass(String password) {
-		try {
+	public String decodepass(String password) throws CryptException {
+
 			AlgorithmParameterSpec iv = new IvParameterSpec(passKey.getBytes());
-			SecretKey key = new SecretKeySpec(passKey.getBytes(), aes);
+			SecretKey key = new SecretKeySpec(passKey.getBytes(), keyString);
 			byte[] decodeBase64 = Base64.decodeBase64(password);
-			Cipher cipher = Cipher.getInstance(cipherString);
-			cipher.init(Cipher.DECRYPT_MODE, key, iv);
-
-			return new String(cipher.doFinal(decodeBase64), StandardCharsets.UTF_8);
-		} catch (Exception e) {
-			logger.info(e.getMessage());
-		}
-
+			Cipher cipher;
+			try {
+				cipher = Cipher.getInstance(cipherString);
+				cipher.init(Cipher.DECRYPT_MODE, key, iv);
+				return new String(cipher.doFinal(decodeBase64), StandardCharsets.UTF_8);
+			} catch (IllegalBlockSizeException | BadPaddingException | InvalidKeyException | InvalidAlgorithmParameterException | NoSuchAlgorithmException | NoSuchPaddingException e) {
+				logger.error("RestService - Decoding Password");
+				if(e instanceof NoSuchAlgorithmException || e instanceof NoSuchPaddingException  ) {
+					throw new CryptException(chiperError );
+				}
+				if(e instanceof InvalidKeyException || e instanceof InvalidAlgorithmParameterException  ) {
+					throw new CryptException(keyError);
+				}
+				if(e instanceof IllegalBlockSizeException || e instanceof BadPaddingException  ) {
+					throw new CryptException(crDrError);
+				}
+			}
 		return null;
 	}
 
 	@Override
-	public String decodenick(String nick) {
-		try {
-		    byte[] bytesIV = new byte[16];
-		    random.nextBytes(bytesIV);
+	public String decodenick(String nick) throws CryptException {
+
 			AlgorithmParameterSpec iv = new IvParameterSpec(nickKey.getBytes());
-			SecretKey key = new SecretKeySpec(nickKey.getBytes(), aes);
+			SecretKey key = new SecretKeySpec(nickKey.getBytes(), keyString);
 			byte[] decodeBase64 = Base64.decodeBase64(nick);
-			Cipher cipher = Cipher.getInstance(cipherString);
-			cipher.init(Cipher.DECRYPT_MODE, key, iv);
-
-			return new String(cipher.doFinal(decodeBase64), StandardCharsets.UTF_8);
-		} catch (Exception e) {
-			logger.info(e.getMessage());
-		}
+			Cipher cipher;
+			try {
+				cipher = Cipher.getInstance(cipherString);
+				cipher.init(Cipher.DECRYPT_MODE, key, iv);
+				return new String(cipher.doFinal(decodeBase64), StandardCharsets.UTF_8);
+			} catch (IllegalBlockSizeException | BadPaddingException | InvalidKeyException | InvalidAlgorithmParameterException | NoSuchAlgorithmException | NoSuchPaddingException e) {
+				logger.error("RestService - Decoding Nick");
+				if(e instanceof NoSuchAlgorithmException || e instanceof NoSuchPaddingException  ) {
+					throw new CryptException(chiperError );
+				}
+				if(e instanceof InvalidKeyException || e instanceof InvalidAlgorithmParameterException  ) {
+					throw new CryptException(keyError);
+				}
+				if(e instanceof IllegalBlockSizeException || e instanceof BadPaddingException  ) {
+					throw new CryptException(crDrError);
+				}
+			}
 
 		return null;
 	}
 
 	@Override
-	public String codeuser(String user) {
-		try {
-
+	public String codeuser(String user) throws CryptException {
+		logger.info(keyString);
 			AlgorithmParameterSpec iv = new IvParameterSpec(userKey.getBytes());
-			SecretKey key = new SecretKeySpec(userKey.getBytes(), aes);
-			Cipher cipher = Cipher.getInstance(cipherString);
-			cipher.init(Cipher.ENCRYPT_MODE, key, iv);
-			byte[] encValue = cipher.doFinal(user.getBytes());
-			byte[] encryptedByteValue = new Base64().encode(encValue);
-			return new String(encryptedByteValue);
-		} catch (Exception e) {
-			logger.info(e.getMessage());
-		}
-
+			SecretKey key = new SecretKeySpec(userKey.getBytes(), keyString);
+			Cipher cipher;
+			try {
+				cipher = Cipher.getInstance(cipherString);
+				cipher.init(Cipher.ENCRYPT_MODE, key, iv);
+				byte[] encValue = cipher.doFinal(user.getBytes());
+				byte[] encryptedByteValue = new Base64().encode(encValue);
+				return new String(encryptedByteValue);
+			} catch (IllegalBlockSizeException | BadPaddingException | InvalidKeyException | InvalidAlgorithmParameterException | NoSuchAlgorithmException | NoSuchPaddingException e) {
+				logger.error("RestService - Coding User");
+				if(e instanceof NoSuchAlgorithmException || e instanceof NoSuchPaddingException  ) {
+					throw new CryptException(chiperError );
+				}
+				if(e instanceof InvalidKeyException || e instanceof InvalidAlgorithmParameterException  ) {
+					throw new CryptException(keyError);
+				}
+				if(e instanceof IllegalBlockSizeException || e instanceof BadPaddingException  ) {
+					throw new CryptException(crDrError);
+				}
+			}
 		return null;
 	}
 
 	@Override
-	public String codepass(String pass) {
-		try {
-
+	public String codepass(String pass) throws CryptException {
 			AlgorithmParameterSpec iv = new IvParameterSpec(passKey.getBytes());
-			SecretKey key = new SecretKeySpec(passKey.getBytes(), aes);
-			Cipher cipher = Cipher.getInstance(cipherString);
-			cipher.init(Cipher.ENCRYPT_MODE, key, iv);
-			byte[] encValue = cipher.doFinal(pass.getBytes());
-			byte[] encryptedByteValue = new Base64().encode(encValue);
-			return new String(encryptedByteValue);
-		} catch (Exception e) {
-			logger.info(e.getMessage());
-		}
-
+			SecretKey key = new SecretKeySpec(passKey.getBytes(), keyString);
+			Cipher cipher;
+			try {
+				cipher = Cipher.getInstance(cipherString);
+				cipher.init(Cipher.ENCRYPT_MODE, key, iv);
+				byte[] encValue = cipher.doFinal(pass.getBytes());
+				byte[] encryptedByteValue = new Base64().encode(encValue);
+				return new String(encryptedByteValue);
+			} catch (IllegalBlockSizeException | BadPaddingException | InvalidKeyException | InvalidAlgorithmParameterException | NoSuchAlgorithmException | NoSuchPaddingException e) {
+				logger.error("RestService - Coding Pass");
+				if(e instanceof NoSuchAlgorithmException || e instanceof NoSuchPaddingException  ) {
+					throw new CryptException(chiperError );
+				}
+				if(e instanceof InvalidKeyException || e instanceof InvalidAlgorithmParameterException  ) {
+					throw new CryptException(keyError);
+				}
+				if(e instanceof IllegalBlockSizeException || e instanceof BadPaddingException  ) {
+					throw new CryptException(crDrError);
+				}
+			}
 		return null;
 	}
 
 	@Override
-	public String codenick(String nick) {
-		try {
-
+	public String codenick(String nick) throws CryptException {
 			AlgorithmParameterSpec iv = new IvParameterSpec(nickKey.getBytes());
-			SecretKey key = new SecretKeySpec(nickKey.getBytes(), aes);
-			Cipher cipher = Cipher.getInstance(cipherString);
-			cipher.init(Cipher.ENCRYPT_MODE, key, iv);
-			byte[] encValue = cipher.doFinal(nick.getBytes());
-			byte[] encryptedByteValue = new Base64().encode(encValue);
-			return new String(encryptedByteValue);
-		} catch (Exception e) {
-			logger.info(e.getMessage());
-		}
+			SecretKey key = new SecretKeySpec(nickKey.getBytes(), keyString);
+			Cipher cipher;
+			try {
+				cipher = Cipher.getInstance(cipherString);
+				cipher.init(Cipher.ENCRYPT_MODE, key, iv);
+				byte[] encValue = cipher.doFinal(nick.getBytes());
+				byte[] encryptedByteValue = new Base64().encode(encValue);
+				return new String(encryptedByteValue);
+			} catch (IllegalBlockSizeException | BadPaddingException | InvalidKeyException | InvalidAlgorithmParameterException | NoSuchAlgorithmException | NoSuchPaddingException e) {
+				logger.error("RestService - Coding Nick");
+				if(e instanceof NoSuchAlgorithmException || e instanceof NoSuchPaddingException  ) {
+					throw new CryptException(chiperError );
+				}
+				if(e instanceof InvalidKeyException || e instanceof InvalidAlgorithmParameterException  ) {
+					throw new CryptException(keyError);
+				}
+				if(e instanceof IllegalBlockSizeException || e instanceof BadPaddingException  ) {
+					throw new CryptException(crDrError);
+				}
+			}
 
 		return null;
 	}
 
 	@Override
-	public User getuser(String user) {
+	public User getuser(String user) throws CryptException {
 		user = this.decodepass(user);
 		user = this.decodeuser(user);
 
@@ -162,19 +231,29 @@ public class RestServiceImpl implements RestService {
 	}
 
 	@Override
-	public String codepasstodb(String pass) {
-		try {
-
+	public String codepasstodb(String pass) throws CryptException {
+		
 			AlgorithmParameterSpec iv = new IvParameterSpec(passToDBKey.getBytes());
-			SecretKey key = new SecretKeySpec(passToDBKey.getBytes(), aes);
-			Cipher cipher = Cipher.getInstance(cipherString);
-			cipher.init(Cipher.ENCRYPT_MODE, key, iv);
-			byte[] encValue = cipher.doFinal(pass.getBytes());
-			byte[] encryptedByteValue = new Base64().encode(encValue);
-			return new String(encryptedByteValue);
-		} catch (Exception e) {
-			logger.info(e.getMessage());
-		}
+			SecretKey key = new SecretKeySpec(passToDBKey.getBytes(), keyString);
+			Cipher cipher;
+			try {
+				cipher = Cipher.getInstance(cipherString);
+				cipher.init(Cipher.ENCRYPT_MODE, key, iv);
+				byte[] encValue = cipher.doFinal(pass.getBytes());
+				byte[] encryptedByteValue = new Base64().encode(encValue);
+				return new String(encryptedByteValue);
+			} catch (IllegalBlockSizeException | BadPaddingException | InvalidKeyException | InvalidAlgorithmParameterException | NoSuchAlgorithmException | NoSuchPaddingException e) {
+				logger.error("RestService - Coding Password");
+				if(e instanceof NoSuchAlgorithmException || e instanceof NoSuchPaddingException  ) {
+					throw new CryptException(chiperError );
+				}
+				if(e instanceof InvalidKeyException || e instanceof InvalidAlgorithmParameterException  ) {
+					throw new CryptException(keyError);
+				}
+				if(e instanceof IllegalBlockSizeException || e instanceof BadPaddingException  ) {
+					throw new CryptException(crDrError);
+				}
+			}
 
 		return null;
 	}

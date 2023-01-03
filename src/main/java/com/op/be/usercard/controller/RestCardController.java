@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.op.be.usercard.exception.CryptException;
 import com.op.be.usercard.model.dto.CardDetailsDTO;
 import com.op.be.usercard.model.dto.DeckDTO;
 import com.op.be.usercard.service.CardService;
@@ -22,12 +23,12 @@ public class RestCardController {
 	CardService cardService;
 
 	@GetMapping("/allDetails")
-	public List<CardDetailsDTO> getAllDetails(@RequestParam("nick") String nick, @RequestParam("set") String set){
+	public List<CardDetailsDTO> getAllDetails(@RequestParam("nick") String nick, @RequestParam("set") String set) throws CryptException{
 		return cardService.getCardDetails(nick, set);
 	}
 
 	@GetMapping("/allClassic")
-	public List<CardDetailsDTO> getAllClassic(@RequestParam("nick") String nick, @RequestParam("set") String set){
+	public List<CardDetailsDTO> getAllClassic(@RequestParam("nick") String nick, @RequestParam("set") String set) throws CryptException{
 		return cardService.getCardClassic(nick, set);
 	}
 
@@ -37,7 +38,7 @@ public class RestCardController {
 	}
 	
 	@PostMapping("/deckCardList")
-	public List<CardDetailsDTO> getCardUser(@RequestBody DeckDTO deck,@RequestParam String nick){
+	public List<CardDetailsDTO> getCardUser(@RequestBody DeckDTO deck,@RequestParam String nick) throws CryptException{
 		return cardService.getCardDetailsDeck(deck, nick);
 	}
 

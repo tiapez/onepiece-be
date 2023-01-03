@@ -4,13 +4,13 @@ import java.util.Arrays;
 
 public class UserDTO {
 
-	private int id;
+	private int id = 0;
 	private String username;
 	private String password;
 	private String nick;
 	private String mail;
 	private String language;
-	private int condition;
+	private int condition = 0;
 	private String navbar;
 	private byte[] image;
 	
@@ -73,6 +73,10 @@ public class UserDTO {
 		return "UserDTO [id=" + id + ", username=" + username + ", password=" + password + ", nick=" + nick + ", mail="
 				+ mail + ", language=" + language + ", condition=" + condition + ", navbar=" + navbar + ", image="
 				+ Arrays.toString(image) + "]";
+	}
+	
+	public boolean isEmpty() {
+		return id == 0 || username == null || password == null || nick == null || mail == null || language == null ||  condition == 0 || navbar == null;
 	}
 	
 	

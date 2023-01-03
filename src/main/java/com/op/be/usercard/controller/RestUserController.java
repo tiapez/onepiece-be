@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.op.be.usercard.exception.CryptException;
 import com.op.be.usercard.model.dto.UserDTO;
 import com.op.be.usercard.service.UserService;
 
@@ -24,12 +25,12 @@ public class RestUserController {
 	UserService userService;
 
 	@GetMapping("/getUser")
-	public UserDTO getUser(@RequestParam("nick") String nick){
+	public UserDTO getUser(@RequestParam("nick") String nick) throws CryptException{
 		return userService.getUserCryptedByNick(nick);
 	}
 
 	@PostMapping("/saveUser")
-	public boolean saveUser(@RequestBody UserDTO user){
+	public boolean saveUser(@RequestBody UserDTO user) throws CryptException{
 		return userService.saveUser(user);
 	}
 
@@ -53,12 +54,12 @@ public class RestUserController {
 
 	@GetMapping("/loginValidation")
 	public String loginValidation(@RequestParam("username") String username, @RequestParam("password") String password,
-			HttpServletResponse response) {
+			HttpServletResponse response) throws CryptException {
 		return userService.loginValidation(username, password, response);
 	}
 
 	@PutMapping("/saveUserConfig")
-	public String saveUserConfig(@RequestBody UserDTO user, @RequestParam("nick") String nick){
+	public String saveUserConfig(@RequestBody UserDTO user, @RequestParam("nick") String nick) throws CryptException {
 		return userService.saveUserConfig(user, nick);
 
 	}

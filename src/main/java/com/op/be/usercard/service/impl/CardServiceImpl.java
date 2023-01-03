@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.op.be.usercard.exception.CryptException;
 import com.op.be.usercard.model.Card;
 import com.op.be.usercard.model.dto.CardDetailsDTO;
 import com.op.be.usercard.model.dto.DeckDTO;
@@ -31,7 +32,7 @@ public class CardServiceImpl implements CardService {
 	DeckCustomRepository deckCustomRepository;
 	
 	@Override
-	public ArrayList<CardDetailsDTO> getCardDetails(String nickCr, String set){
+	public ArrayList<CardDetailsDTO> getCardDetails(String nickCr, String set) throws CryptException{
 		
 		ArrayList<UserCardDTO> userCardDTOList = (ArrayList<UserCardDTO>) cardUserCustomRepository.findUserCardDetailsBySet(set,
 				restService.decodenick(nickCr));
@@ -40,7 +41,7 @@ public class CardServiceImpl implements CardService {
 	
 
 	@Override
-	public ArrayList<CardDetailsDTO> getCardClassic(String nickCr, String set){
+	public ArrayList<CardDetailsDTO> getCardClassic(String nickCr, String set) throws CryptException{
 		ArrayList<UserCardDTO> userCardDTOList = (ArrayList<UserCardDTO>) cardUserCustomRepository.findUserCardClassicBySet(set,
 				restService.decodenick(nickCr));
 
@@ -58,7 +59,7 @@ public class CardServiceImpl implements CardService {
 	}
 	
 	@Override
-	public ArrayList<CardDetailsDTO> getCardDetailsDeck(DeckDTO deckDTO, String nickCr){
+	public ArrayList<CardDetailsDTO> getCardDetailsDeck(DeckDTO deckDTO, String nickCr) throws CryptException{
 		String nick = restService.decodenick(nickCr);
 		ArrayList<UserCardDTO> userCardDTOList = (ArrayList<UserCardDTO>) 
 				deckCustomRepository.findUserCardDetailsByDeck(deckDTO.getFormat(), deckDTO.getColor1(), deckDTO.getColor2(),deckDTO.getCond(), nick);

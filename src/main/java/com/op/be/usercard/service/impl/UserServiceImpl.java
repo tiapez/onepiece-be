@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.google.gson.Gson;
+import com.op.be.usercard.exception.CryptException;
 import com.op.be.usercard.model.User;
 import com.op.be.usercard.model.dto.UserDTO;
 import com.op.be.usercard.repository.UserRepository;
@@ -18,36 +18,38 @@ import com.op.be.usercard.service.RestService;
 import com.op.be.usercard.service.UserService;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 	@Autowired
 	UserRepository userRepository;
 
 	@Autowired
 	RestService restService;
-	
-    @Autowired
-    private ModelMapper modelMapper;
-	
+
+	@Autowired
+	private ModelMapper modelMapper;
+
 	@Override
-	public String saveUserConfig(UserDTO userDTO,String nick){
-		userRepository.findByNick(restService.decodenick(nick)).ifPresent(u ->{
+	public String saveUserConfig(UserDTO userDTO, String nick) throws CryptException {
+		String gson = new Gson().toJson(userDTO.getNavbar());
+		userRepository.findByNick(restService.decodenick(nick)).ifPresent(u -> {
 			u.setCondition(userDTO.getCondition());
 			u.setLanguage(userDTO.getLanguage());
 			u.setNavbar(userDTO.getNavbar());
 			u.setImage(userDTO.getImage());
-
 			userRepository.save(u);
 		});
 
-		return new Gson().toJson(userDTO.getNavbar());
+		return gson;
+
 	}
+
 	@Override
-	public UserDTO getUserCryptedByNick(String nick){
+	public UserDTO getUserCryptedByNick(String nick) throws CryptException {
 
 		Optional<User> user = userRepository.findByNick(restService.decodenick(nick));
 		UserDTO u = null;
-		if(user.isPresent()) {
-			u = modelMapper.map(user.get(),UserDTO.class);
+		if (user.isPresent()) {
+			u = modelMapper.map(user.get(), UserDTO.class);
 			u.setUsername(restService.codeuser(u.getUsername()));
 			u.setPassword(restService.codepass(u.getPassword()));
 			u.setNick(restService.codenick(u.getNick()));
@@ -57,7 +59,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public boolean saveUser(UserDTO userDTO){
+	public boolean saveUser(UserDTO userDTO) throws CryptException {
 		userDTO.setPassword(restService.codepasstodb(restService.decodepass(userDTO.getPassword())));
 		userDTO.setNick(restService.decodenick(userDTO.getNick()));
 		userDTO.setUsername(restService.decodeuser(userDTO.getUsername()));
@@ -66,33 +68,37 @@ public class UserServiceImpl implements UserService{
 		userDTO.setLanguage("ENG");
 		User user = modelMapper.map(userDTO, User.class);
 		User u = userRepository.save(user);
-		return u!=null;
+		return u != null;
 	}
 
 	@Override
-	public boolean userValidation(String username){
+	public boolean userValidation(String username) {
 		List<String> usersname = userRepository.getAllUsername();
 		return !usersname.contains(username.toLowerCase());
 	}
 
 	@Override
-	public boolean nickValidation(String nick){
+	public boolean nickValidation(String nick) {
 		List<String> nicks = userRepository.getAllNick();
 		return !nicks.contains(nick.toLowerCase());
 	}
+
 	@Override
-	public boolean mailValidation(@RequestParam("mail") String mail){
+	public boolean mailValidation(String mail) {
 		List<String> mails = userRepository.getAllMail();
 		return !mails.contains(mail.toLowerCase());
 
 	}
-	
+
 	@Override
-	public String loginValidation(@RequestParam("username") String username, @RequestParam("password") String password,
-			HttpServletResponse response) {
-			username = restService.decodeuser(username);
-			password = restService.decodepass(password);
-			password = restService.codepasstodb(password);
+	public String loginValidation(String username, String password, HttpServletResponse response)
+			throws CryptException {
+		username = restService.decodeuser(username);
+		System.out.println(username);
+		password = restService.decodepass(password);
+		System.out.println(password);
+		password = restService.codepasstodb(password);
+		System.out.println(password);
 
 		Optional<User> u = userRepository.findByUserPass(username, password);
 		if (u.isPresent()) {
