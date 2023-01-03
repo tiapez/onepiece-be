@@ -1,7 +1,5 @@
 package com.op.be.usercard.model.dto;
 
-import com.op.be.usercard.model.Deck;
-
 public class DeckDTO {
 	
 	private int id;

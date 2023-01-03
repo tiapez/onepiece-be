@@ -100,7 +100,7 @@
           <subscriptionId/>  
           <resourceGroup>onepiece-tcg</resourceGroup>  
           <appName>onepiece-be</appName>  
-          <pricingTier>P1v2</pricingTier>  
+          <pricingTier>F1</pricingTier>  
           <region>westeurope</region>  
           <runtime> 
             <os>Windows</os>  

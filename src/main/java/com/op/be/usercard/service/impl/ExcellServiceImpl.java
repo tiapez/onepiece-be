@@ -16,7 +16,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.op.be.usercard.model.UserCard;
 import com.op.be.usercard.model.dto.UserCardExcel;
 import com.op.be.usercard.repository.UserCardRepository;
 import com.op.be.usercard.service.ExcellService;
@@ -67,7 +66,6 @@ public class ExcellServiceImpl implements ExcellService{
 								userCard.setNumber(cellValue);
 								break;
 							case 1:
-								System.out.println(cellValue);
 								if (cellValue.toLowerCase().contains("(parallel)")) {
 									userCard.setNumber(userCard.getNumber().concat("a"));
 								}
@@ -109,15 +107,17 @@ public class ExcellServiceImpl implements ExcellService{
 		for (UserCardExcel uce : list) {
 			if(uce.getCond() == 0) {
 				try {
-					UserCard uc = userCardRepository.findCardUserClassic2(uce.getNumber(), uce.getSet(), nick).get();
-					System.out.println(uc.toString());
+					userCardRepository.findCardUserClassic2(uce.getNumber(), uce.getSet(), nick).ifPresent(uc ->{
+
 					if(type == 0) {
 						uc.setQty(uc.getQty()+uce.getQty());				
 					}else {
 						uc.setQty(uce.getQty());
 					}
-					System.out.println(uc.toString());
+
 					userCardRepository.save(uc);
+					
+					});
 
 				}catch(NoSuchElementException e) {
 					try {
