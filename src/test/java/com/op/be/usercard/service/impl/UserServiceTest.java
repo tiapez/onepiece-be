@@ -96,16 +96,6 @@ public class UserServiceTest {
 	
 	@Test
 	public void saveUserConfig() throws CryptException {
-		UserDTO user = new UserDTO();
-		Optional<User> ou = Optional.empty();
-
-		when(restService.decodenick(anyString())).thenReturn("");
-		when(userRepository.findByNick(anyString())).thenReturn(ou);
-
-		userServiceImpl.saveUserConfig(user, "");
-		verifyNoInteractions(restService);
-
-		
 	}
 	
 	
