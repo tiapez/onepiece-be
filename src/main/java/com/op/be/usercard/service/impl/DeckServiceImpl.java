@@ -56,7 +56,7 @@ public class DeckServiceImpl implements DeckService{
 	public void saveOnlyDeck(DeckDTO deckDTO, String nickcr) throws CryptException {
 		userRepository.findByNick(restService.decodenick(nickcr)).ifPresent((User u) -> {
 			Deck deck = modelMapper.map(deckDTO, Deck.class);
-			deckDTO.setUserId(u.getId());
+			deck.setUserId(u.getId());
 			deckCustomRepository.save(deck);
 		});
 	}
