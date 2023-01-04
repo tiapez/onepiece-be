@@ -7,16 +7,17 @@ import javax.persistence.IdClass;
 
 @Entity
 @IdClass(UserCardId.class)
-public class UserCard {
-	
+public class UserCard	
+{
+
 	@Id
-	@Column(name = "user_id")
+	@Column
 	private int userId;
-	
+
 	@Id
-	@Column(name = "card_id")
+	@Column
 	private int cardId;
-	
+
 	@Id
 	@Column
 	private int detailsId;
@@ -24,19 +25,37 @@ public class UserCard {
 	@Column
 	private int qty;
 
-	public int getUserId() {
+	public UserCard()
+	{
+		super();
+	}
+
+	public UserCard(int userId, int cardId, int detailsId, int qty)
+	{
+		super();
+		this.userId = userId;
+		this.cardId = cardId;
+		this.detailsId = detailsId;
+		this.qty = qty;
+	}
+
+	public int getUserId()
+	{
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(int userId)
+	{
 		this.userId = userId;
 	}
 
-	public int getCardId() {
+	public int getCardId()
+	{
 		return cardId;
 	}
 
-	public void setCardId(int cardId) {
+	public void setCardId(int cardId)
+	{
 		this.cardId = cardId;
 	}
 
@@ -44,34 +63,25 @@ public class UserCard {
 		return detailsId;
 	}
 
-	public void setDetailsId(int detailsId) {
+	public void setDetailsId(int detailsId)
+	{
 		this.detailsId = detailsId;
 	}
 
-	public int getQty() {
+	public int getQty()
+	{
 		return qty;
 	}
 
-	public void setQty(int qty) {
+	public void setQty(int qty)
+	{
 		this.qty = qty;
-	}
-
-	public UserCard(int userId, int cardId, int detailsId, int qty) {
-		super();
-		this.userId = userId;
-		this.cardId = cardId;
-		this.detailsId = detailsId;
-		this.qty = qty;
-	}
-
-	public UserCard() {
-		super();
 	}
 
 	@Override
-	public String toString() {
-		return "UserCard [userId=" + userId + ", cardId=" + cardId + ", detailsId=" + detailsId
-				+ ", qty=" + qty + "]";
+	public String toString()
+	{
+		return "UserCard [userId=" + userId + ", cardId=" + cardId + ", detailsId=" + detailsId + ", qty=" + qty + "]";
 	}
 
 }

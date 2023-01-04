@@ -23,6 +23,7 @@ import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
 import com.op.be.usercard.exception.CryptException;
+import com.op.be.usercard.model.Card;
 import com.op.be.usercard.model.CardDetails;
 import com.op.be.usercard.model.User;
 import com.op.be.usercard.model.UserCard;
@@ -137,8 +138,7 @@ public class RestServiceImpl implements RestService
 		try
 		{
 			Cipher cipher;
-			if (flag)
-			{
+			if (flag) {
 				cipher = Cipher.getInstance(cipherString);
 				cipher.init(Cipher.ENCRYPT_MODE, key, iv);
 				byte[] encValue = cipher.doFinal(string.getBytes());
@@ -176,22 +176,40 @@ public class RestServiceImpl implements RestService
 		return null;
 	}
 
+	private DetailsDTO getDetailsDTO(UserCard userCard, CardDetails cardDetails)
+	{
+		if (userCard == null)
+			return new DetailsDTO(cardDetails.getCodCondition(), cardDetails.getLanguage(), cardDetails.getCondition(),
+					0, 1);
+		else
+			return new DetailsDTO(cardDetails.getCodCondition(), cardDetails.getLanguage(), cardDetails.getCondition(),
+					userCard.getQty(), userCard.getUserId());
+	}
+
 	@Override
-	public ArrayList<CardDetailsDTO> forgeCardDetails(ArrayList<UserCardDTO> userCardDTOList)
+	public ArrayList<CardDetailsDTO> forgeCardDetails(ArrayList<Object[]> userCardDTOList)
 	{
 		ArrayList<CardDetailsDTO> cardList = new ArrayList<>();
 		CardDetailsDTO cardDetailsDTO = null;
 		UserCardDTO userCardDTO = null;
-		userCardDTO = userCardDTOList.get(0);
+		Object[] ob ;
+		ob = userCardDTOList.get(0);
+		userCardDTO = new UserCardDTO((Card) ob[0],(UserCard) ob[1],(CardDetails) ob[2]);
 		cardDetailsDTO = new CardDetailsDTO(userCardDTO.getCard(),
 				getDetailsDTO(userCardDTO.getUserCard(), userCardDTO.getCardDetails()));
 		for (int i = 1; i < userCardDTOList.size(); i++)
 		{
-			userCardDTO = userCardDTOList.get(i);
+			ob = userCardDTOList.get(i);
+			userCardDTO = new UserCardDTO((Card) ob[0],(UserCard) ob[1],(CardDetails) ob[2]);
 			if (cardDetailsDTO.getCard().getId() == userCardDTO.getCard().getId())
 			{
 				cardDetailsDTO.addDetails(getDetailsDTO(userCardDTO.getUserCard(), userCardDTO.getCardDetails()));
-				cardDetailsDTO.setQtyMax(userCardDTO.getQtyMax());
+				if(ob.length >3) {
+					cardDetailsDTO.setQtyMax(userCardDTO.getQtyMax());
+				}else {
+					cardDetailsDTO.setQtyMax(0);
+				}
+
 			}
 			else
 			{
@@ -207,15 +225,4 @@ public class RestServiceImpl implements RestService
 		}
 		return cardList;
 	}
-
-	private DetailsDTO getDetailsDTO(UserCard userCard, CardDetails cardDetails)
-	{
-		if (userCard == null)
-			return new DetailsDTO(cardDetails.getCodCondition(), cardDetails.getLanguage(), cardDetails.getCondition(),
-					0, 1);
-		else
-			return new DetailsDTO(cardDetails.getCodCondition(), cardDetails.getLanguage(), cardDetails.getCondition(),
-					userCard.getQty(), userCard.getUserId());
-	}
-
 }

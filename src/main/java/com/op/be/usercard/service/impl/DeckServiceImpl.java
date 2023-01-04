@@ -64,16 +64,18 @@ public class DeckServiceImpl implements DeckService{
 	@Override
 	public ArrayList<UserDeckDTO> getUserDeck(String nickcr) throws CryptException{
 		String nick = restService.decodenick(nickcr);
-		ArrayList<DeckCardRow> deck = (ArrayList<DeckCardRow>) deckCustomRepository.findDeckUser(nick);
+		ArrayList<Object[]> deckObj = (ArrayList<Object[]>) deckCustomRepository.findDeckUser(nick);
 		ArrayList<UserDeckDTO> deckList = new ArrayList<>();
-		if (!deck.isEmpty()) {
-			UserDeckDTO ud = new UserDeckDTO(deck.get(0).getDeck());
+		if (!deckObj.isEmpty()) {
+			Object[] ob = deckObj.get(0);
+			UserDeckDTO ud = new UserDeckDTO((Deck) ob[1]);
 
-			for (int i = 0; i < deck.size(); i++) {
-				DeckCardRow deckCardRow = deck.get(i);
+			for (int i = 0; i < deckObj.size(); i++) {
+				ob = deckObj.get(i);
+				DeckCardRow deckCardRow = new DeckCardRow((Card) ob[0],(Deck) ob[1],(Long) ob[2],(int) ob[3],(int) ob[4]);
 				if ((ud.getDeck().getId() != deckCardRow.getDeck().getId())) {
 					deckList.add(ud);
-					ud = new UserDeckDTO(deck.get(i).getDeck());
+					ud = new UserDeckDTO((Deck) ob[1]);
 				}
 				if (deckCardRow.getCard().getCard().getCardType().equals("Leader")) {
 					int own = 0;

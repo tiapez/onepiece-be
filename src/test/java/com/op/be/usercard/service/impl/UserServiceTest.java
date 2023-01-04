@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -24,7 +24,7 @@ import com.op.be.usercard.model.dto.UserDTO;
 import com.op.be.usercard.repository.UserRepository;
 import com.op.be.usercard.service.RestService;
 
-public class UserServiceTest {
+class UserServiceTest {
 
 	@Spy
 	@InjectMocks
@@ -38,7 +38,7 @@ public class UserServiceTest {
 
 
 	
-	@Before
+	@BeforeEach
     public void setUp() {
     	MockitoAnnotations.openMocks(this);
     }
@@ -53,49 +53,49 @@ public class UserServiceTest {
 	}
     
 	@Test
-	public void mailValidationTrueTest() {
+	 void testMailValidationTrue() {
 		when(userRepository.getAllMail()).thenReturn(getList());
 		
 		assertTrue(!userServiceImpl.mailValidation("stringa1"));
 	}
 	
 	@Test
-	public void mailValidationFalseTest() {
+	 void testMailValidationFalse() {
 		when(userRepository.getAllMail()).thenReturn(getList());
 		
 		assertTrue(!userServiceImpl.mailValidation("stringa1"));
 	}
 	
 	@Test
-	public void userValidationTrueTest() {
+	 void testUserValidationTrue() {
 		when(userRepository.getAllUsername()).thenReturn(getList());
 		
 		assertTrue(!userServiceImpl.userValidation("stringa1"));
 	}
 	
 	@Test
-	public void userValidationFalseTest() {
+	 void testUserValidationFalse() {
 		when(userRepository.getAllUsername()).thenReturn(getList());
 		
 		assertTrue(!userServiceImpl.userValidation("stringa1"));
 	}
 	
 	@Test
-	public void nickValidationTrueTest() {
+	 void testNickValidationTrue() {
 		when(userRepository.getAllNick()).thenReturn(getList());
 		
 		assertTrue(!userServiceImpl.nickValidation("stringa1"));
 	}
 	
 	@Test
-	public void nickValidationFalseTest() {
+	 void testNickValidationFalse() {
 		when(userRepository.getAllNick()).thenReturn(getList());
 		
 		assertTrue(!userServiceImpl.nickValidation("stringa1"));
 	}
 	
 	@Test
-	public void saveUserConfig() throws CryptException {
+	 void testSaveUserConfig() throws CryptException {
 		UserDTO user = new UserDTO();
 		Optional<User> ou = Optional.empty();
 

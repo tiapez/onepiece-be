@@ -69,4 +69,11 @@ public class CardDetails{
 		super();
 	}
 
+	@Override
+	public String toString()
+	{
+		return "CardDetails [id=" + id + ", codCondition=" + codCondition + ", language=" + language + ", condition="
+				+ condition + ", condDesc=" + condDesc + "]";
+	}
+
 }
