@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 
 public class UserCardId implements Serializable {
-	private int userId;
-	private int cardId;
-	private int detailsId;		
+	private Long userId;
+	private Long cardId;
+	private Long detailsId;		
 }

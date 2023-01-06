@@ -9,7 +9,7 @@ public class CardDetailsDTO {
 
 	private Card card;
 	private List<DetailsDTO> details;
-	private int qtyMax = 0;
+	private int qtyMax = 1;
 
 	public CardDetailsDTO(Card card, DetailsDTO details) {
 		this.card = card;
@@ -46,8 +46,9 @@ public class CardDetailsDTO {
 	}
 
 	@Override
-	public String toString() {
-		return "CardWDetailsDTO [card=" + card + ", detailsDTO=" + details + "]";
+	public String toString()
+	{
+		return "CardDetailsDTO [card=" + card + ", details=" + details + ", qtyMax=" + qtyMax + "]";
 	}
 
 	public CardDetailsDTO(Card card) {

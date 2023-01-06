@@ -11,35 +11,60 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.op.be.usercard.exception.CryptException;
+import com.op.be.usercard.model.Set;
 import com.op.be.usercard.model.dto.CardDetailsDTO;
 import com.op.be.usercard.model.dto.DeckDTO;
+import com.op.be.usercard.model.dto.SetCard;
+import com.op.be.usercard.repository.SetRepository;
 import com.op.be.usercard.service.CardService;
 
 @RestController
 @RequestMapping("api/card")
-public class RestCardController {
+public class RestCardController
+{
 
 	@Autowired
 	CardService cardService;
 
+	@Autowired
+	SetRepository setRepository;
+
 	@GetMapping("/allDetails")
-	public List<CardDetailsDTO> getAllDetails(@RequestParam("nick") String nick, @RequestParam("set") String set) throws CryptException{
+	public List<CardDetailsDTO> getAllDetails(@RequestParam("nick") String nick, @RequestParam("set") String set)
+			throws CryptException
+	{
 		return cardService.getCardDetails(nick, set);
 	}
 
 	@GetMapping("/allClassic")
-	public List<CardDetailsDTO> getAllClassic(@RequestParam("nick") String nick, @RequestParam("set") String set) throws CryptException{
+	public List<CardDetailsDTO> getAllClassic(@RequestParam("nick") String nick, @RequestParam("set") String set)
+			throws CryptException
+	{
 		return cardService.getCardClassic(nick, set);
 	}
 
-	@GetMapping("/all")
-	public List<CardDetailsDTO> getAll(){
-		return cardService.getAll();
+	@PostMapping("/deckCardList")
+	public List<CardDetailsDTO> getCardForDeck(@RequestBody DeckDTO deck, @RequestParam String nick) throws CryptException
+	{
+		return cardService.getCardForDeck(deck, nick);
+	}
+
+	@GetMapping("/set")
+	public List<Set> getSetList()
+	{
+		return setRepository.findSetList();
 	}
 	
-	@PostMapping("/deckCardList")
-	public List<CardDetailsDTO> getCardUser(@RequestBody DeckDTO deck,@RequestParam String nick) throws CryptException{
-		return cardService.getCardDetailsDeck(deck, nick);
+	@GetMapping("/deckSet")
+	public List<Set> getDeckSetList(@RequestParam("format") String format)
+	{
+		return setRepository.findDeckSetList(format);
+	}
+	
+	@GetMapping("/all")
+	public List<SetCard> getAll()
+	{
+		return cardService.getSetCardList();
 	}
 
 }

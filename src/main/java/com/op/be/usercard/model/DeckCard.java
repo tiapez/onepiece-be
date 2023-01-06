@@ -18,27 +18,27 @@ public class DeckCard implements Serializable{
 	
 	@Id
 	@Column
-	private int deckId;
+	private Long deckId;
 	@Id
 	@Column
-	private int cardId;
+	private Long cardId;
 	
 	@Column
 	private int qty;
 
-	public int getDeckId() {
+	public Long getDeckId() {
 		return deckId;
 	}
 
-	public void setDeckId(int deckId) {
+	public void setDeckId(Long deckId) {
 		this.deckId = deckId;
 	}
 
-	public int getCardId() {
+	public Long getCardId() {
 		return cardId;
 	}
 
-	public void setCardId(int cardId) {
+	public void setCardId(Long cardId) {
 		this.cardId = cardId;
 	}
 
@@ -54,7 +54,7 @@ public class DeckCard implements Serializable{
 		super();
 	}
 
-	public DeckCard(int deckId, int cardId, int qty) {
+	public DeckCard(Long deckId, Long cardId, int qty) {
 		super();
 		this.deckId = deckId;
 		this.cardId = cardId;

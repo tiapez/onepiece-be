@@ -2,9 +2,9 @@ package com.op.be.usercard.model.dto;
 
 public class DeckDTO {
 	
-	 int id;
-	 int userId;
-	 int leader;
+	 Long id;
+	 Long userId;
+	 Long leader;
 	 String color1;
 	 String color2;
 	 String desc;
@@ -21,27 +21,27 @@ public class DeckDTO {
 		super();
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public int getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
-	public int getLeader() {
+	public Long getLeader() {
 		return leader;
 	}
 
-	public void setLeader(int leader) {
+	public void setLeader(Long leader) {
 		this.leader = leader;
 	}
 
@@ -133,7 +133,7 @@ public class DeckDTO {
 		this.image = image;
 	}
 
-	public DeckDTO(int id, int userId, int leader, String color1, String color2, String desc, String counter,
+	public DeckDTO(Long id, Long userId, Long leader, String color1, String color2, String desc, String counter,
 			String side, String note, String format, String name, int cond, String language, byte[] image) {
 		super();
 		this.id = id;

@@ -17,6 +17,7 @@ import com.op.be.usercard.model.dto.DeckDTO;
 import com.op.be.usercard.model.dto.UserDeckDTO;
 import com.op.be.usercard.repository.CardRepository;
 import com.op.be.usercard.repository.DeckCardRepository;
+import com.op.be.usercard.repository.DeckRepository;
 import com.op.be.usercard.repository.UserRepository;
 import com.op.be.usercard.repository.custom.DeckCustomRepository;
 import com.op.be.usercard.service.DeckService;
@@ -30,6 +31,9 @@ public class DeckServiceImpl implements DeckService{
 
 	@Autowired
 	DeckCardRepository deckCardRepository;
+	
+	@Autowired
+	DeckRepository deckRepository;
 
 	@Autowired
 	UserRepository userRepository;
@@ -99,5 +103,11 @@ public class DeckServiceImpl implements DeckService{
 	@Override
 	public ArrayList<Card> getAllLeader(){
 		return 	(ArrayList<Card>) cardRepository.findAllLeader();	
+	}
+	
+	@Override
+	public void deleteDeck(Long id){
+		deckCardRepository.deleteByDeckId(id);
+		deckRepository.deleteById(id);
 	}
 }

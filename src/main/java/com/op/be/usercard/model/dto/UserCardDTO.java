@@ -48,7 +48,7 @@ public class UserCardDTO {
 		this.card = card;
 		this.userCard = userCard;
 		this.cardDetails = cardDetails;
-		this.qtyMax = 0;
+		this.qtyMax = 1;
 	}
 
 	public UserCardDTO(Card card, UserCard userCard, CardDetails cardDetails, int qtyMax) {
@@ -64,8 +64,12 @@ public class UserCardDTO {
 	}
 
 	@Override
-	public String toString() {
-		return "UserCardDetailsDTO [card=" + card + ", userCard=" + userCard + ", cardDetails=" + cardDetails + "]";
+	public String toString()
+	{
+		return "UserCardDTO [card=" + card + ", userCard=" + userCard + ", cardDetails=" + cardDetails + ", qtyMax="
+				+ qtyMax + "]";
 	}
+
+
 
 }

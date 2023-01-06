@@ -7,7 +7,7 @@ import javax.persistence.Id;
 public class CardDetails{
 
 	@Id
-	private int id;
+	private Long id;
 	@Column
 	private int codCondition;
 	@Column(name = "`language`")
@@ -17,11 +17,11 @@ public class CardDetails{
 	@Column
 	private String condDesc;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -54,14 +54,6 @@ public class CardDetails{
 	}
 
 	public void setCondDesc(String condDesc) {
-		this.condDesc = condDesc;
-	}
-
-	public CardDetails(int id, String condition, String language, String condDesc) {
-		super();
-		this.codCondition = id;
-		this.condition = condition;
-		this.language = language;
 		this.condDesc = condDesc;
 	}
 

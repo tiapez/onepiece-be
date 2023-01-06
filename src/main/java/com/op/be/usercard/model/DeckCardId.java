@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 public class DeckCardId implements Serializable {
 
-	private int deckId;
+	private Long deckId;
 
-	private int cardId;
+	private Long cardId;
 }

@@ -16,6 +16,8 @@ public interface DeckService {
 	void saveOnlyDeck(DeckDTO deck, String nickcr) throws CryptException;
 
 	ArrayList<Card> getAllLeader();
+
+	void deleteDeck(Long id);
 	
 
 }

@@ -10,35 +10,41 @@ import org.springframework.stereotype.Repository;
 import com.op.be.usercard.model.Deck;
 
 @Repository("deckCustomRepository")
-public interface DeckCustomRepository extends JpaRepository<Deck, Long> {
+public interface DeckCustomRepository extends JpaRepository<Deck, Long>
+{
 
 	@Query("SELECT c,d,COALESCE(sum(uc.qty),0),COALESCE(dc.qty,1),COALESCE(cl.qtyMax,4) "
-			+ "FROM Deck d INNER JOIN com.op.be.usercard.model.User u "
-			+ "ON u.nick = :nick  AND u.id = d.userId "
-			+ "LEFT JOIN DeckCard dc ON dc.deckId = d.id "
-			+ "INNER JOIN Card c ON c.id = dc.cardId OR c.id = d.leader "
+			+ "FROM Deck d INNER JOIN com.op.be.usercard.model.User u " + "ON u.nick = :nick  AND u.id = d.userId "
+			+ "LEFT JOIN DeckCard dc ON dc.deckId = d.id " + "INNER JOIN Card c ON c.id = dc.cardId OR c.id = d.leader "
 			+ "LEFT JOIN CardLimit cl ON cl.cardId = c.id AND cl.format = d.format "
 			+ "LEFT JOIN UserCard uc ON uc.cardId = c.id AND uc.userId = u.id "
 			+ "LEFT JOIN CardDetails cd ON cd.id = uc.detailsId "
-			+ "WHERE cd.codCondition <= d.cond OR cd.codCondition is null "
-			+ "GROUP BY c.id,d.id "
+			+ "WHERE cd.codCondition <= d.cond OR cd.codCondition is null " + "GROUP BY c.id,d.id "
 			+ "ORDER BY  d.id,c.setId,c.number ")
 	List<Object[]> findDeckUser(@Param("nick") String nick);
 
-	@Query("SELECT c,uc,cd,COALESCE(cl.qtyMax,4) "
-			+ "FROM Card c "
-			+ "LEFT JOIN CardLimit cl ON cl.cardId = c.id AND cl.format = :lang "
-			+ "LEFT JOIN CardDetails cd ON 1=1 "
-			+ "INNER JOIN com.op.be.usercard.model.User u ON u.nick = :user "
-			+ "LEFT JOIN UserCard uc  ON  "
+	@Query("SELECT c,uc,cd,COALESCE(cl.qtyMax,4) " + "FROM Card c " + "LEFT JOIN CardLimit cl ON cl.cardId = c.id AND cl.format = :format "
+			+ "LEFT JOIN CardDetails cd ON 1=1 " + "INNER JOIN com.op.be.usercard.model.User u ON u.nick = :user "
+			+ "LEFT JOIN UserCard uc  ON  " + "(uc.detailsId is null and uc.userId is null and uc.cardId is null) "
+			+ "OR ( uc.detailsId = cd.id and uc.userId = u.id and uc.cardId = c.id) "
+			+ "WHERE (c.color = :color1 OR c.color = :color2) AND cd.language = :lang "
+			+ "AND cd.codCondition <= :codCond AND c.cardType != 'Leader' "
+			+ "AND c.setId IN (Select fs.setId FROM FormatSet fs WHERE fs.format = :format) "
+			+ "ORDER BY  c.setId,c.number, cd.id ")
+	List<Object[]> findCardForDeck(@Param("lang") String lang, @Param("color1") String color1,
+			@Param("color2") String color2, @Param("codCond") int codCond, @Param("user") String user,
+			@Param("format") String format);
+
+	@Query("SELECT COALESCE(cl.qtyMax,4) " + "FROM Card c "
+			+ "LEFT JOIN CardLimit cl ON cl.cardId = c.id AND cl.format = :lang " + "LEFT JOIN CardDetails cd ON 1=1 "
+			+ "INNER JOIN com.op.be.usercard.model.User u ON u.nick = :user " + "LEFT JOIN UserCard uc  ON  "
 			+ "(uc.detailsId is null and uc.userId is null and uc.cardId is null) "
 			+ "OR ( uc.detailsId = cd.id and uc.userId = u.id and uc.cardId = c.id) "
 			+ "WHERE (c.color = :color1 OR c.color = :color2) AND cd.language = :lang "
 			+ "AND cd.codCondition <= :codCond AND c.cardType != 'Leader' "
+			+ "AND c.setId IN (Select fs.setId FROM FormatSet fs WHERE fs.format = :format) "
 			+ "ORDER BY  c.setId,c.number, cd.id ")
-	List<Object[]> findUserCardDetailsByDeck(@Param("lang") String lang,@Param("color1") String color1,
-			@Param("color2") String color2,@Param("codCond") int codCond, @Param("user") String user);
+	int[] qtyMax(@Param("lang") String lang, @Param("color1") String color1, @Param("color2") String color2,
+			@Param("codCond") int codCond, @Param("user") String user, @Param("format") String format);
 
-	
-	
 }

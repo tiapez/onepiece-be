@@ -10,13 +10,13 @@ public class CardLimitId implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private int cardId;
+	private Long cardId;
 	private String format;
 	
-	public int getCardId() {
+	public Long getCardId() {
 		return cardId;
 	}
-	public void setCardId(int cardId) {
+	public void setCardId(Long cardId) {
 		this.cardId = cardId;
 	}
 	public String getFormat() {
@@ -30,7 +30,7 @@ public class CardLimitId implements Serializable{
 		super();
 	}
 	
-	public CardLimitId(int cardId, String format) {
+	public CardLimitId(Long cardId, String format) {
 		super();
 		this.cardId = cardId;
 		this.format = format;
@@ -41,10 +41,6 @@ public class CardLimitId implements Serializable{
 		return "CardLimitId [cardId=" + cardId + ", format=" + format + "]";
 	}
 	
-	@Override
-	public int hashCode() {
-		return Objects.hash(cardId, format);
-	}
 	
 	@Override
 	public boolean equals(Object obj) {

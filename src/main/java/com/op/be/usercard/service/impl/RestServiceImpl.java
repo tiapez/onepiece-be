@@ -180,7 +180,7 @@ public class RestServiceImpl implements RestService
 	{
 		if (userCard == null)
 			return new DetailsDTO(cardDetails.getCodCondition(), cardDetails.getLanguage(), cardDetails.getCondition(),
-					0, 1);
+					0, new Long(1));
 		else
 			return new DetailsDTO(cardDetails.getCodCondition(), cardDetails.getLanguage(), cardDetails.getCondition(),
 					userCard.getQty(), userCard.getUserId());
@@ -200,14 +200,18 @@ public class RestServiceImpl implements RestService
 		for (int i = 1; i < userCardDTOList.size(); i++)
 		{
 			ob = userCardDTOList.get(i);
-			userCardDTO = new UserCardDTO((Card) ob[0],(UserCard) ob[1],(CardDetails) ob[2]);
+			if(ob.length >3) {
+				userCardDTO = new UserCardDTO((Card) ob[0],(UserCard) ob[1],(CardDetails) ob[2],(int) ob[3]);
+			}else {
+				userCardDTO = new UserCardDTO((Card) ob[0],(UserCard) ob[1],(CardDetails) ob[2]);
+			}
 			if (cardDetailsDTO.getCard().getId() == userCardDTO.getCard().getId())
 			{
 				cardDetailsDTO.addDetails(getDetailsDTO(userCardDTO.getUserCard(), userCardDTO.getCardDetails()));
 				if(ob.length >3) {
 					cardDetailsDTO.setQtyMax(userCardDTO.getQtyMax());
 				}else {
-					cardDetailsDTO.setQtyMax(0);
+					cardDetailsDTO.setQtyMax(1);
 				}
 
 			}
@@ -223,6 +227,7 @@ public class RestServiceImpl implements RestService
 		{
 			cardList.add(cardDetailsDTO);
 		}
+
 		return cardList;
 	}
 }

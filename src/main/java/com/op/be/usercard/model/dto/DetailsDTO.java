@@ -6,15 +6,15 @@ public class DetailsDTO {
 	private String language;
 	private String condition;
 	private int qty;
-	private int userCardId;
+	private Long userId;
 
-	public DetailsDTO(int codCondition, String language, String condition, int qty, int userCardId) {
+	public DetailsDTO(int codCondition, String language, String condition, int qty, Long userCardId) {
 		super();
 		this.codCondition = codCondition;
 		this.language = language;
 		this.condition = condition;
 		this.qty = qty;
-		this.userCardId = userCardId;
+		this.userId = userCardId;
 	}
 
 	public int getCodCondition() {
@@ -49,18 +49,18 @@ public class DetailsDTO {
 		this.qty = qty;
 	}
 
-	public int getUserCardId() {
-		return userCardId;
+	public Long getuserId() {
+		return userId;
 	}
 
-	public void setUserCardId(int userCardId) {
-		this.userCardId = userCardId;
+	public void setuserId(Long userCardId) {
+		this.userId = userCardId;
 	}
 
 	@Override
 	public String toString() {
 		return "DetailsDTO [cod_condition=" + codCondition + ", language=" + language + ", condition=" + condition
-				+ ", qty=" + qty + ", userCardId=" + userCardId + "]";
+				+ ", qty=" + qty + ", userId=" + userId + "]";
 	}
 
 }

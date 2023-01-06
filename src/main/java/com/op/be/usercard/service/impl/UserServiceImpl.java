@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService {
 		userDTO.setUsername(restService.decodeuser(userDTO.getUsername()));
 		user.setNavbar("Light");
 		user.setCondition(2);
-		user.setLanguage("ENG");
+		user.setLanguage("Eng");
 		
 		User u = userRepository.save(user);
 		return u != null;

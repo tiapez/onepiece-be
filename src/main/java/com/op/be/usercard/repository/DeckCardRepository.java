@@ -19,5 +19,5 @@ public interface DeckCardRepository extends CrudRepository<DeckCard, DeckCardId>
 	@Query("DELETE "
 			+ "FROM DeckCard "
 			+ "WHERE deckId = :id ")
-	void deleteByDeckId(@Param("id") int deckId);
+	void deleteByDeckId(@Param("id") Long id);
 }

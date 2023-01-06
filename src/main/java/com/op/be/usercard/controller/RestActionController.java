@@ -33,7 +33,7 @@ public class RestActionController {
 
 	@PostMapping("/addDetails")
 	public void addDetails(HttpServletRequest request, HttpServletResponse response, HttpSession session,
-			@RequestParam(value = "cardId") int cardId, @RequestParam(value = "nick") String nick,
+			@RequestParam("cardId") Long cardId, @RequestParam("nick") String nick,
 			@RequestParam(value = "language", required = false) String language,
 			@RequestParam(value = "condition", required = false, defaultValue = "0") int condition) throws CryptException
 			{
@@ -50,7 +50,7 @@ public class RestActionController {
 				return;
 			}
 		} else {
-			int id = cardService.getDetailsId(language, condition);
+			Long id = (long) cardService.getDetailsId(language, condition);
 			cu = userCardRepository.findCardUserDetails(cardId, restService.decodenick(nick), id);
 			if (cu.isPresent()) {
 				userCard = cu.get();
@@ -67,7 +67,7 @@ public class RestActionController {
 
 	@PostMapping("/removeDetails")
 	public void minusDetails(HttpServletRequest request, HttpServletResponse response, HttpSession session,
-			@RequestParam(value = "cardId") int cardId, @RequestParam(value = "nick") String nick,
+			@RequestParam(value = "cardId") Long cardId, @RequestParam(value = "nick") String nick,
 			@RequestParam(value = "language", required = false) String language,
 			@RequestParam(value = "condition", required = false, defaultValue = "0") int condition)
 					throws CryptException{
@@ -75,7 +75,7 @@ public class RestActionController {
 		if (language == null && condition == 0) {
 			cu = userCardRepository.findCardUserClassic(cardId, restService.decodenick(nick));
 		} else {
-			int id = cardService.getDetailsId(language, condition);
+			Long id = (long) cardService.getDetailsId(language, condition);
 			cu = userCardRepository.findCardUserDetails(cardId, restService.decodenick(nick), id);
 		}
 

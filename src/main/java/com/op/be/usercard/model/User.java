@@ -11,7 +11,7 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private Long id;
 	@Column
 	private String username;
 	@Column(name = "`password`")
@@ -30,12 +30,12 @@ public class User {
 	private byte[] image;
 
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -133,7 +133,7 @@ public class User {
 		this.mail = mail;
 	}
 
-	public User(int id, String username, String password, String nick, String mail, String language, int condition,
+	public User(Long id, String username, String password, String nick, String mail, String language, int condition,
 			String navbar, byte[] image) {
 		super();
 		this.id = id;

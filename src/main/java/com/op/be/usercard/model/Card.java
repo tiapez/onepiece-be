@@ -15,7 +15,7 @@ public class Card
 	@Id@
 	GeneratedValue(strategy = GenerationType.AUTO)
 	@Column
-	private int id;
+	private Long id;
 	@Column
 	private String number;
 	@Column
@@ -33,16 +33,16 @@ public class Card
 	@Column
 	private String effect;
 	@Column
-	private int cost;
+	private Long cost;
 	@Column
-	private int power;
+	private Long power;
 	@Column
-	private int counter;
+	private Long counter;
 	@Column
 	private String role;
 
-	public Card(int id, String number, String rarity, String setId, String name, String color, String cardType,
-			String type, String effect, int cost, int power, int counter, String role) {
+	public Card(Long id, String number, String rarity, String setId, String name, String color, String cardType,
+			String type, String effect, Long cost, Long power, Long counter, String role) {
 		super();
 		this.id = id;
 		this.number = number;
@@ -63,12 +63,12 @@ public class Card
 		super();
 	}
 	
-	public int getId() 
+	public Long getId() 
 	{
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -136,27 +136,27 @@ public class Card
 		this.effect = effect;
 	}
 
-	public int getCost() {
+	public Long getCost() {
 		return cost;
 	}
 
-	public void setCost(int cost) {
+	public void setCost(Long cost) {
 		this.cost = cost;
 	}
 
-	public int getPower() {
+	public Long getPower() {
 		return power;
 	}
 
-	public void setPower(int power) {
+	public void setPower(Long power) {
 		this.power = power;
 	}
 
-	public int getCounter() {
+	public Long getCounter() {
 		return counter;
 	}
 
-	public void setCounter(int counter) {
+	public void setCounter(Long counter) {
 		this.counter = counter;
 	}
 

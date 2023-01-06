@@ -11,11 +11,11 @@ public class Deck {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private Long id;
 	@Column
-	private int userId;
+	private Long userId;
 	@Column
-	private int leader;
+	private Long leader;
 	@Column
 	private String color1;
 	@Column
@@ -66,22 +66,22 @@ public class Deck {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
-	public int getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
-	public void setUserId(int userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
-	public int getLeader() {
+	public Long getLeader() {
 		return leader;
 	}
-	public void setLeader(int leader) {
+	public void setLeader(Long leader) {
 		this.leader = leader;
 	}
 	public String getColor2() {
@@ -131,7 +131,7 @@ public class Deck {
 		super();
 	}
 	
-	public Deck(int id, int userId, int leader, String color1, String color2, String desc, String counter, String side,
+	public Deck(Long id, Long userId, Long leader, String color1, String color2, String desc, String counter, String side,
 			String note, String format, String name, int cond, String language, byte[] image) {
 		super();
 		this.id = id;

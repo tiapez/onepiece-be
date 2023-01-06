@@ -13,7 +13,10 @@ public class Set {
 	@Column
 	private String name;
 	@Column
-	private int list;
+	private Long nCard;
+	
+	@Column
+	private Long nParallel;
 
 	public Set() {
 		super();
@@ -35,17 +38,32 @@ public class Set {
 		this.name = name;
 	}
 
-	public int getList() {
-		return list;
+	public Long getnCard()
+	{
+		return nCard;
 	}
 
-	public void setList(int list) {
-		this.list = list;
+	public void setnCard(Long nCard)
+	{
+		this.nCard = nCard;
+	}
+
+	public Long getnParallel()
+	{
+		return nParallel;
+	}
+
+	public void setnParallel(Long nParallel)
+	{
+		this.nParallel = nParallel;
 	}
 
 	@Override
-	public String toString() {
-		return "Set [id=" + id + ", name=" + name + ", list=" + list + "]";
+	public String toString()
+	{
+		return "Set [id=" + id + ", name=" + name + ", nCard=" + nCard + ", nParallel=" + nParallel + "]";
 	}
+
+	
 
 }

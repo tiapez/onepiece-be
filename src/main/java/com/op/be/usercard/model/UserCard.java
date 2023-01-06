@@ -12,15 +12,15 @@ public class UserCard
 
 	@Id
 	@Column
-	private int userId;
+	private Long userId;
 
 	@Id
 	@Column
-	private int cardId;
+	private Long cardId;
 
 	@Id
 	@Column
-	private int detailsId;
+	private Long detailsId;
 
 	@Column
 	private int qty;
@@ -30,7 +30,7 @@ public class UserCard
 		super();
 	}
 
-	public UserCard(int userId, int cardId, int detailsId, int qty)
+	public UserCard(Long userId, Long cardId, Long detailsId, int qty)
 	{
 		super();
 		this.userId = userId;
@@ -39,31 +39,31 @@ public class UserCard
 		this.qty = qty;
 	}
 
-	public int getUserId()
+	public Long getUserId()
 	{
 		return userId;
 	}
 
-	public void setUserId(int userId)
+	public void setUserId(Long userId)
 	{
 		this.userId = userId;
 	}
 
-	public int getCardId()
+	public Long getCardId()
 	{
 		return cardId;
 	}
 
-	public void setCardId(int cardId)
+	public void setCardId(Long cardId)
 	{
 		this.cardId = cardId;
 	}
 
-	public int getDetailsId() {
+	public Long getDetailsId() {
 		return detailsId;
 	}
 
-	public void setDetailsId(int detailsId)
+	public void setDetailsId(Long detailsId)
 	{
 		this.detailsId = detailsId;
 	}
