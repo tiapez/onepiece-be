@@ -61,9 +61,9 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean saveUser(UserDTO userDTO) throws CryptException {
 		User user = modelMapper.map(userDTO, User.class);
-		userDTO.setPassword(restService.codepasstodb(restService.decodepass(userDTO.getPassword())));
-		userDTO.setNick(restService.decodenick(userDTO.getNick()));
-		userDTO.setUsername(restService.decodeuser(userDTO.getUsername()));
+		user.setPassword(restService.codepasstodb(restService.decodepass(userDTO.getPassword())));
+		user.setNick(restService.decodenick(userDTO.getNick()));
+		user.setUsername(restService.decodeuser(userDTO.getUsername()));
 		user.setNavbar("Light");
 		user.setCondition(2);
 		user.setLanguage("Eng");
@@ -98,6 +98,7 @@ public class UserServiceImpl implements UserService {
 		password = restService.decodepass(password);
 		password = restService.codepasstodb(password);
 
+		
 		Optional<User> u = userRepository.findByUserPass(username, password);
 		if (u.isPresent()) {
 			return new Gson().toJson(u.get().getNick() + "/" + u.get().getNavbar());

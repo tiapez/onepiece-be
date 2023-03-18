@@ -18,7 +18,6 @@ import javax.crypto.spec.SecretKeySpec;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
@@ -36,18 +35,12 @@ import com.op.be.usercard.service.RestService;
 public class RestServiceImpl implements RestService
 {
 
-	@Value("${UserKey}")
-	private String userKey;
-	@Value("${PassKey}")
-	private String passKey;
-	@Value("${NickKey}")
-	private String nickKey;
-	@Value("${PassToDBKey}")
-	private String passToDBKey;
-	@Value("${Chiper}")
-	private String cipherString;
-	@Value("${Chiper1}")
-	private String keyString;
+	private String userKey    ="6543210987654321";
+	private String passKey    ="1234567890123456";
+	private String nickKey	  ="a54321098765432z";
+	private String passToDBKey="a54aranzaarunzaz";
+	private String cipherString="AES/CBC/PKCS5Padding";
+	private String keyString="AES";
 
 	private static String chiperError = "Incorrect cipher string: ";
 	private static String keyError = "Incorrect key / algorithm: ";

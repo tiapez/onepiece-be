@@ -96,6 +96,7 @@ public class CardServiceImpl implements CardService
 				i++;
 				set = setList.get(i);	
 				list = new ArrayList<>();
+				
 			}
 			list.add(card);
 		}
@@ -103,8 +104,6 @@ public class CardServiceImpl implements CardService
 		if(set.getId().equals(card.getSetId())) {
 			setCardList.add(new SetCard(set, list));
 		}
-		
-
 		
 		return setCardList;
 	}
