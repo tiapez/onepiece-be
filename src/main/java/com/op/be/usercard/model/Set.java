@@ -14,6 +14,8 @@ public class Set {
 	private String name;
 	@Column
 	private Long nCard;
+	@Column
+	private String format;
 	
 	@Column
 	private Long nParallel;
@@ -21,6 +23,26 @@ public class Set {
 	public Set() {
 		super();
 	}
+
+	
+	
+	
+	
+	public String getFormat() {
+		return format;
+	}
+
+
+
+
+
+	public void setFormat(String format) {
+		this.format = format;
+	}
+
+
+
+
 
 	public String getId() {
 		return id;
